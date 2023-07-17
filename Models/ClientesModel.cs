@@ -51,8 +51,8 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "CNPJ: ")]
         public string CNPJ { get; set; }
 
-        [Required(ErrorMessage = "Campo Estado é obrigatório...")]
-        [Display(Name = "Estado: ")]
+        [Required(ErrorMessage = "Campo Inscrição Estadual é obrigatório...")]
+        [Display(Name = "IE: ")]
         public string IE { get; set; }
 
         [Required(ErrorMessage = "Campo Estado é obrigatório...")]
