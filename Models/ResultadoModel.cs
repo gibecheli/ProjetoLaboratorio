@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace ProjetoLaboratorio.Models
 {
-    public class LaudosModel
+    public class ResultadoModel
     {
             [Key]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +21,6 @@ namespace ProjetoLaboratorio.Models
             public string Conteudo { get; set; }
 
             [Display(Name = "Data do Laudo:")]
-            public DateTime DataLaudo { get; set; } = DateTime.Now;
+            public DateTime DataLaudo { get; set; } = DateTime.Today;
         }
     }

@@ -3,8 +3,6 @@ using System.Xml.Linq;
 
 namespace ProjetoLaboratorio.Models
 {
-    public enum Estado { AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO };
-
     public class ClientesModel
     {
         [Key]
@@ -29,8 +27,8 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Cidade: ")]
         public string Cidade { get; set; }
 
-        [Display(Name = "Estado: ")]
-        public Estado estado { get; set; }
+        [Required(ErrorMessage = "O campo Estado é obrigatório.")]
+        public string Estado { get; set; }
 
         [Display(Name = "Telefone: ")]
         public string Telefone { get; set; }
@@ -43,19 +41,15 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Email: ")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Campo CPF é obrigatório...")]
         [Display(Name = "CPF: ")]
         public string CPF { get; set; }
 
-        [Required(ErrorMessage = "Campo CNPJ é obrigatório...")]
         [Display(Name = "CNPJ: ")]
         public string CNPJ { get; set; }
 
-        [Required(ErrorMessage = "Campo Inscrição Estadual é obrigatório...")]
         [Display(Name = "IE: ")]
         public string IE { get; set; }
 
-        [Required(ErrorMessage = "Campo Estado é obrigatório...")]
         [Display(Name = "Razao Social: ")]
         public string RazaoSocial { get; set; }
 
@@ -63,7 +57,7 @@ namespace ProjetoLaboratorio.Models
         public string NomePropriedade { get; set; }
 
         [Display(Name = "Data do Cadastro: ")]
-        public DateTime DataDoCadastro { get; set; } = DateTime.Now;
+        public DateTime DataDoCadastro { get; set; } = DateTime.Today;
 
         public ICollection<PedidosModel> Pedidos { get; set; }
 

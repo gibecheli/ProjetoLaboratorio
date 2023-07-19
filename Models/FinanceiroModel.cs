@@ -17,6 +17,7 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Pedidos:")]
         public int PedidosId { get; set; }
         public PedidosModel Pedidos { get; set; }
+        public ClientesModel Clientes { get; set; }
 
         [Display(Name = "Valor Total:")]
         [DisplayFormat(DataFormatString = "{0:C3}")]

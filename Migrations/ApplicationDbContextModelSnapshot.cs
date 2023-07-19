@@ -17,7 +17,7 @@ namespace ProjetoLaboratorio.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -38,9 +38,6 @@ namespace ProjetoLaboratorio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Analises");
@@ -55,11 +52,9 @@ namespace ProjetoLaboratorio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CNPJ")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CPF")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Celular")
@@ -83,8 +78,11 @@ namespace ProjetoLaboratorio.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<string>("IE")
+                    b.Property<string>("Estado")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IE")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
@@ -96,7 +94,6 @@ namespace ProjetoLaboratorio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RazaoSocial")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
@@ -104,9 +101,6 @@ namespace ProjetoLaboratorio.Migrations
 
                     b.Property<string>("TipoPessoa")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("estado")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -120,6 +114,9 @@ namespace ProjetoLaboratorio.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ClientesId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Finalizado")
                         .IsRequired()
@@ -138,34 +135,11 @@ namespace ProjetoLaboratorio.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientesId");
+
                     b.HasIndex("PedidosId");
 
                     b.ToTable("Financeiro");
-                });
-
-            modelBuilder.Entity("ProjetoLaboratorio.Models.LaudosModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Conteudo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataLaudo")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PedidoId");
-
-                    b.ToTable("Laudo");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.PedidosModel", b =>
@@ -191,6 +165,9 @@ namespace ProjetoLaboratorio.Migrations
                     b.Property<float>("Quantidade")
                         .HasColumnType("real");
 
+                    b.Property<int>("SolicitanteModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TipoAnalise")
                         .HasColumnType("nvarchar(max)");
 
@@ -202,6 +179,8 @@ namespace ProjetoLaboratorio.Migrations
                     b.HasIndex("AnalisesModelId");
 
                     b.HasIndex("ClientesModelId");
+
+                    b.HasIndex("SolicitanteModelId");
 
                     b.ToTable("Pedidos");
                 });
@@ -221,7 +200,10 @@ namespace ProjetoLaboratorio.Migrations
                     b.Property<DateTime>("DataRelatorio")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LaudoId")
+                    b.Property<int?>("LaudoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResultadoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -229,6 +211,31 @@ namespace ProjetoLaboratorio.Migrations
                     b.HasIndex("LaudoId");
 
                     b.ToTable("Relatorio");
+                });
+
+            modelBuilder.Entity("ProjetoLaboratorio.Models.ResultadoModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Conteudo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataLaudo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoId");
+
+                    b.ToTable("Laudo");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.SolicitanteModel", b =>
@@ -285,6 +292,7 @@ namespace ProjetoLaboratorio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TipoPessoa")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -300,7 +308,7 @@ namespace ProjetoLaboratorio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoId"), 1L, 1);
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("TipoAnalise")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("valor")
@@ -313,24 +321,19 @@ namespace ProjetoLaboratorio.Migrations
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.FinanceiroModel", b =>
                 {
+                    b.HasOne("ProjetoLaboratorio.Models.ClientesModel", "Clientes")
+                        .WithMany()
+                        .HasForeignKey("ClientesId");
+
                     b.HasOne("ProjetoLaboratorio.Models.PedidosModel", "Pedidos")
                         .WithMany()
                         .HasForeignKey("PedidosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Clientes");
+
                     b.Navigation("Pedidos");
-                });
-
-            modelBuilder.Entity("ProjetoLaboratorio.Models.LaudosModel", b =>
-                {
-                    b.HasOne("ProjetoLaboratorio.Models.PedidosModel", "Pedido")
-                        .WithMany("Laudos")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pedido");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.PedidosModel", b =>
@@ -347,20 +350,37 @@ namespace ProjetoLaboratorio.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjetoLaboratorio.Models.SolicitanteModel", "SolicitanteModel")
+                        .WithMany()
+                        .HasForeignKey("SolicitanteModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AnalisesModel");
 
                     b.Navigation("ClientesModel");
+
+                    b.Navigation("SolicitanteModel");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.RelatoriosModel", b =>
                 {
-                    b.HasOne("ProjetoLaboratorio.Models.LaudosModel", "Laudo")
+                    b.HasOne("ProjetoLaboratorio.Models.ResultadoModel", "Laudo")
                         .WithMany()
-                        .HasForeignKey("LaudoId")
+                        .HasForeignKey("LaudoId");
+
+                    b.Navigation("Laudo");
+                });
+
+            modelBuilder.Entity("ProjetoLaboratorio.Models.ResultadoModel", b =>
+                {
+                    b.HasOne("ProjetoLaboratorio.Models.PedidosModel", "Pedido")
+                        .WithMany("Laudos")
+                        .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Laudo");
+                    b.Navigation("Pedido");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.AnalisesModel", b =>

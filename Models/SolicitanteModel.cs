@@ -7,6 +7,7 @@ namespace ProjetoLaboratorio.Models
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "O campo Tipo de Pessoa é obrigatório.")]
         public string TipoPessoa { get; set; }
 
         [Required(ErrorMessage = "O campo Nome é obrigatório.")]
@@ -33,13 +34,13 @@ namespace ProjetoLaboratorio.Models
         public string CPF { get; set; }
 
         [Required(ErrorMessage = "O campo CNPJ é obrigatório.")]
-        public string CNPJ { get; set; }
+        public string? CNPJ { get; set; }
 
-        public string IE { get; set; }
+        public string? IE { get; set; }
 
         [Required(ErrorMessage = "O campo Razão Social é obrigatório.")]
-        public string RazaoSocial { get; set; }
+        public string? RazaoSocial { get; set; }
 
-        public DateTime DataDeCadastro { get; set; } = DateTime.Now;
+        public DateTime DataDeCadastro { get; set; } = DateTime.Today;
     }
 }

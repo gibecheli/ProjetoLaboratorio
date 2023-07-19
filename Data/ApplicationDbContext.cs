@@ -16,7 +16,7 @@ namespace ProjetoLaboratorio.Data
         public DbSet<TipoAnalisesModel> TipoAnalise { get; set; }
         public DbSet<FinanceiroModel> Financeiro { get; set; }
         public DbSet<RelatoriosModel> Relatorio { get; set; }
-        public DbSet<LaudosModel> Laudo { get; set; }
+        public DbSet<ResultadoModel> Laudo { get; set; }
 
 
     }

@@ -19,11 +19,6 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Descrição:")]
         public string Descricao { get; set; }
 
-        [Required(ErrorMessage = "O campo Valor é obrigatório.")]
-        [Column(TypeName = "decimal(18, 2)")]
-        [Display(Name = "Valor:")]
-        public decimal Valor { get; set; }
-
         public ICollection<PedidosModel> Pedidos { get; set; }
 
     }
