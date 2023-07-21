@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.TipoAnalise)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.valor)
             </th>
             <th></th>
@@ -26,6 +29,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoAnalise)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.valor)

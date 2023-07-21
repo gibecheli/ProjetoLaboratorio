@@ -54,7 +54,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,Valor")] AnalisesModel analisesModel)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao")] AnalisesModel analisesModel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Valor")] AnalisesModel analisesModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao")] AnalisesModel analisesModel)
         {
             if (id != analisesModel.Id)
             {

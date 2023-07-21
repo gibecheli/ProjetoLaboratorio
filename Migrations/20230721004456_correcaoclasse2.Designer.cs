@@ -12,8 +12,8 @@ using ProjetoLaboratorio.Data;
 namespace ProjetoLaboratorio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230719012915_alteracao3")]
-    partial class alteracao3
+    [Migration("20230721004456_correcaoclasse2")]
+    partial class correcaoclasse2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,14 +164,14 @@ namespace ProjetoLaboratorio.Migrations
                     b.Property<DateTime>("DataSaida")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("Quantidade")
-                        .HasColumnType("real");
-
                     b.Property<int>("SolicitanteModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("TipoAnalise")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("quantidade")
+                        .HasColumnType("real");
 
                     b.Property<float>("valor")
                         .HasColumnType("real");
@@ -310,6 +310,10 @@ namespace ProjetoLaboratorio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoId"), 1L, 1);
 
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TipoAnalise")
                         .HasColumnType("nvarchar(max)");
 
@@ -377,7 +381,7 @@ namespace ProjetoLaboratorio.Migrations
             modelBuilder.Entity("ProjetoLaboratorio.Models.ResultadoModel", b =>
                 {
                     b.HasOne("ProjetoLaboratorio.Models.PedidosModel", "Pedido")
-                        .WithMany("Laudos")
+                        .WithMany("Resultado")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -397,7 +401,7 @@ namespace ProjetoLaboratorio.Migrations
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.PedidosModel", b =>
                 {
-                    b.Navigation("Laudos");
+                    b.Navigation("Resultado");
                 });
 #pragma warning restore 612, 618
         }

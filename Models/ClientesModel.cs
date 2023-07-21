@@ -42,16 +42,16 @@ namespace ProjetoLaboratorio.Models
         public string Email { get; set; }
 
         [Display(Name = "CPF: ")]
-        public string CPF { get; set; }
+        public string? CPF { get; set; }
 
         [Display(Name = "CNPJ: ")]
-        public string CNPJ { get; set; }
+        public string? CNPJ { get; set; }
 
         [Display(Name = "IE: ")]
-        public string IE { get; set; }
+        public string? IE { get; set; }
 
         [Display(Name = "Razao Social: ")]
-        public string RazaoSocial { get; set; }
+        public string? RazaoSocial { get; set; }
 
         [Display(Name = "Nome da Propriedade: ")]
         public string NomePropriedade { get; set; }

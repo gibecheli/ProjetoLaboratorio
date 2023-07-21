@@ -10,8 +10,12 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Tipo de Análise: ")]
         public string TipoAnalise { get; set; }
 
+        [Required(ErrorMessage = "O campo Descrição é obrigatório.")]
+        [Display(Name = "Descrição:")]
+        public string Descricao { get; set; }
+
         [Display(Name = "Valor: ")]
-        [DisplayFormat(DataFormatString = "{0:C3}")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public float valor { get; set; }
     }
 

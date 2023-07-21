@@ -16,13 +16,16 @@
                 @Html.DisplayNameFor(model => model.ClientesModel)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SolicitanteModel)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.AnalisesModel)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TipoAnalise)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantidade)
+                @Html.DisplayNameFor(model => model.quantidade)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.valor)
@@ -40,7 +43,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ClientesModel.CNPJ)
+                @Html.DisplayFor(modelItem => item.ClientesModel.Celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SolicitanteModel.CNPJ)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AnalisesModel.Descricao)
@@ -49,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.TipoAnalise)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Quantidade)
+                @Html.DisplayFor(modelItem => item.quantidade)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.valor)

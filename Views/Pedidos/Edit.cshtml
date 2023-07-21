@@ -19,6 +19,11 @@
                 <span asp-validation-for="ClientesModelId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SolicitanteModelId" class="control-label"></label>
+                <select asp-for="SolicitanteModelId" class="form-control" asp-items="ViewBag.SolicitanteModelId"></select>
+                <span asp-validation-for="SolicitanteModelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="AnalisesModelId" class="control-label"></label>
                 <select asp-for="AnalisesModelId" class="form-control" asp-items="ViewBag.AnalisesModelId"></select>
                 <span asp-validation-for="AnalisesModelId" class="text-danger"></span>
@@ -29,9 +34,9 @@
                 <span asp-validation-for="TipoAnalise" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" class="form-control" />
-                <span asp-validation-for="Quantidade" class="text-danger"></span>
+                <label asp-for="quantidade" class="control-label"></label>
+                <input asp-for="quantidade" class="form-control" />
+                <span asp-validation-for="quantidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="valor" class="control-label"></label>

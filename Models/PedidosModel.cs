@@ -15,12 +15,10 @@ namespace ProjetoLaboratorio.Models
         [ForeignKey("Cliente")]
         public int ClientesModelId { get; set; }
 
-
-        [Display(Name = "Soliciatante: ")]
+        [Display(Name = "Solicitante: ")]
         public SolicitanteModel SolicitanteModel { get; set; }
         [ForeignKey("Solicitante")]
         public int SolicitanteModelId { get; set; }
-
 
         [Display(Name = "Analises: ")]
         public AnalisesModel AnalisesModel { get; set; }
@@ -57,6 +55,6 @@ namespace ProjetoLaboratorio.Models
         public DateTime DataSaida { get; set; }
 
 
-        public ICollection<ResultadoModel> Laudos { get; set; }
+        public ICollection<ResultadoModel> Resultado { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace ProjetoLaboratorio.Models
 
         [Required(ErrorMessage = "O campo Email é obrigatório.")]
         public string Email { get; set; }
-
+               
         [Required(ErrorMessage = "O campo CPF é obrigatório.")]
         public string CPF { get; set; }
 

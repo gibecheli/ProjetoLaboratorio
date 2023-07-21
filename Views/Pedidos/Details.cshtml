@@ -14,7 +14,13 @@
             @Html.DisplayNameFor(model => model.ClientesModel)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClientesModel.CNPJ)
+            @Html.DisplayFor(model => model.ClientesModel.Celular)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SolicitanteModel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SolicitanteModel.CNPJ)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AnalisesModel)
@@ -29,10 +35,10 @@
             @Html.DisplayFor(model => model.TipoAnalise)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantidade)
+            @Html.DisplayNameFor(model => model.quantidade)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantidade)
+            @Html.DisplayFor(model => model.quantidade)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.valor)

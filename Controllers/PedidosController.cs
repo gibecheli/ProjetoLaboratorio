@@ -22,7 +22,7 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Pedidos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pedidos.Include(p => p.AnalisesModel).Include(p => p.ClientesModel);
+            var applicationDbContext = _context.Pedidos.Include(p => p.AnalisesModel).Include(p => p.ClientesModel).Include(p => p.SolicitanteModel);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,6 +37,7 @@ namespace ProjetoLaboratorio.Controllers
             var pedidosModel = await _context.Pedidos
                 .Include(p => p.AnalisesModel)
                 .Include(p => p.ClientesModel)
+                .Include(p => p.SolicitanteModel)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedidosModel == null)
             {
@@ -50,7 +51,8 @@ namespace ProjetoLaboratorio.Controllers
         public IActionResult Create()
         {
             ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao");
-            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "CNPJ");
+            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "Celular");
+            ViewData["SolicitanteModelId"] = new SelectList(_context.Solicitantes, "Id", "CNPJ");
             return View();
         }
 
@@ -59,7 +61,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PedidoId,ClientesModelId,AnalisesModelId,TipoAnalise,Quantidade,valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
+        public async Task<IActionResult> Create([Bind("PedidoId,ClientesModelId,SolicitanteModelId,AnalisesModelId,TipoAnalise,quantidade,valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +70,8 @@ namespace ProjetoLaboratorio.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnalisesModelId);
-            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "CNPJ", pedidosModel.ClientesModelId);
+            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "Celular", pedidosModel.ClientesModelId);
+            ViewData["SolicitanteModelId"] = new SelectList(_context.Solicitantes, "Id", "CNPJ", pedidosModel.SolicitanteModelId);
             return View(pedidosModel);
         }
 
@@ -86,7 +89,8 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
             ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnalisesModelId);
-            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "CNPJ", pedidosModel.ClientesModelId);
+            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "Celular", pedidosModel.ClientesModelId);
+            ViewData["SolicitanteModelId"] = new SelectList(_context.Solicitantes, "Id", "CNPJ", pedidosModel.SolicitanteModelId);
             return View(pedidosModel);
         }
 
@@ -95,7 +99,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClientesModelId,AnalisesModelId,TipoAnalise,Quantidade,valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
+        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClientesModelId,SolicitanteModelId,AnalisesModelId,TipoAnalise,quantidade,valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
         {
             if (id != pedidosModel.PedidoId)
             {
@@ -123,7 +127,8 @@ namespace ProjetoLaboratorio.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnalisesModelId);
-            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "CNPJ", pedidosModel.ClientesModelId);
+            ViewData["ClientesModelId"] = new SelectList(_context.Clientes, "Id", "Celular", pedidosModel.ClientesModelId);
+            ViewData["SolicitanteModelId"] = new SelectList(_context.Solicitantes, "Id", "CNPJ", pedidosModel.SolicitanteModelId);
             return View(pedidosModel);
         }
 
@@ -138,6 +143,7 @@ namespace ProjetoLaboratorio.Controllers
             var pedidosModel = await _context.Pedidos
                 .Include(p => p.AnalisesModel)
                 .Include(p => p.ClientesModel)
+                .Include(p => p.SolicitanteModel)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedidosModel == null)
             {
