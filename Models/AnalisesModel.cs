@@ -20,6 +20,7 @@ namespace ProjetoLaboratorio.Models
         public string Descricao { get; set; }
 
         public ICollection<PedidosModel> Pedidos { get; set; }
+        public ICollection<TipoAnalisesModel> TipoAnalises { get; set; }
 
     }
 }

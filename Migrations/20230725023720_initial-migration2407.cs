@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoLaboratorio.Migrations
 {
-    public partial class correcaoclasse2 : Migration
+    public partial class initialmigration2407 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,8 +27,8 @@ namespace ProjetoLaboratorio.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CpfCnpj = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     TipoPessoa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nome = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Endereco = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
@@ -37,24 +37,22 @@ namespace ProjetoLaboratorio.Migrations
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Celular = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CNPJ = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IE = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InscricaoEstadual = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NomePropriedade = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DataDoCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                    table.PrimaryKey("PK_Clientes", x => x.CpfCnpj);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Solicitantes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CpfCnpj = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     TipoPessoa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -63,15 +61,13 @@ namespace ProjetoLaboratorio.Migrations
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Celular = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CNPJ = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IE = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InscricaoEstadual = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataDeCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Solicitantes", x => x.Id);
+                    table.PrimaryKey("PK_Solicitantes", x => x.CpfCnpj);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,13 +76,19 @@ namespace ProjetoLaboratorio.Migrations
                 {
                     TipoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TipoAnalise = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TipoAnalises = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    valor = table.Column<float>(type: "real", nullable: false)
+                    valor = table.Column<float>(type: "real", nullable: false),
+                    AnalisesModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoAnalise", x => x.TipoId);
+                    table.ForeignKey(
+                        name: "FK_TipoAnalise_Analises_AnalisesModelId",
+                        column: x => x.AnalisesModelId,
+                        principalTable: "Analises",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -95,10 +97,12 @@ namespace ProjetoLaboratorio.Migrations
                 {
                     PedidoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientesModelCpfCnpj = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ClientesModelId = table.Column<int>(type: "int", nullable: false),
+                    SolicitanteModelCpfCnpj = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SolicitanteModelId = table.Column<int>(type: "int", nullable: false),
                     AnalisesModelId = table.Column<int>(type: "int", nullable: false),
-                    TipoAnalise = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TipoAnalisesModelId = table.Column<int>(type: "int", nullable: false),
                     quantidade = table.Column<float>(type: "real", nullable: false),
                     valor = table.Column<float>(type: "real", nullable: false),
                     DataEntrada = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -114,16 +118,21 @@ namespace ProjetoLaboratorio.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pedidos_Clientes_ClientesModelId",
-                        column: x => x.ClientesModelId,
+                        name: "FK_Pedidos_Clientes_ClientesModelCpfCnpj",
+                        column: x => x.ClientesModelCpfCnpj,
                         principalTable: "Clientes",
-                        principalColumn: "Id",
+                        principalColumn: "CpfCnpj");
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Solicitantes_SolicitanteModelCpfCnpj",
+                        column: x => x.SolicitanteModelCpfCnpj,
+                        principalTable: "Solicitantes",
+                        principalColumn: "CpfCnpj",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pedidos_Solicitantes_SolicitanteModelId",
-                        column: x => x.SolicitanteModelId,
-                        principalTable: "Solicitantes",
-                        principalColumn: "Id",
+                        name: "FK_Pedidos_TipoAnalise_TipoAnalisesModelId",
+                        column: x => x.TipoAnalisesModelId,
+                        principalTable: "TipoAnalise",
+                        principalColumn: "TipoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -134,7 +143,7 @@ namespace ProjetoLaboratorio.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PedidosId = table.Column<int>(type: "int", nullable: false),
-                    ClientesId = table.Column<int>(type: "int", nullable: true),
+                    ClientesCpfCnpj = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ValorTotal = table.Column<float>(type: "real", nullable: false),
                     FormaPagamento = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Finalizado = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false)
@@ -143,10 +152,10 @@ namespace ProjetoLaboratorio.Migrations
                 {
                     table.PrimaryKey("PK_Financeiro", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Financeiro_Clientes_ClientesId",
-                        column: x => x.ClientesId,
+                        name: "FK_Financeiro_Clientes_ClientesCpfCnpj",
+                        column: x => x.ClientesCpfCnpj,
                         principalTable: "Clientes",
-                        principalColumn: "Id");
+                        principalColumn: "CpfCnpj");
                     table.ForeignKey(
                         name: "FK_Financeiro_Pedidos_PedidosId",
                         column: x => x.PedidosId,
@@ -156,7 +165,7 @@ namespace ProjetoLaboratorio.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Laudo",
+                name: "Resultado",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -167,9 +176,9 @@ namespace ProjetoLaboratorio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Laudo", x => x.Id);
+                    table.PrimaryKey("PK_Resultado", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Laudo_Pedidos_PedidoId",
+                        name: "FK_Resultado_Pedidos_PedidoId",
                         column: x => x.PedidoId,
                         principalTable: "Pedidos",
                         principalColumn: "PedidoId",
@@ -191,16 +200,16 @@ namespace ProjetoLaboratorio.Migrations
                 {
                     table.PrimaryKey("PK_Relatorio", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Relatorio_Laudo_LaudoId",
+                        name: "FK_Relatorio_Resultado_LaudoId",
                         column: x => x.LaudoId,
-                        principalTable: "Laudo",
+                        principalTable: "Resultado",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Financeiro_ClientesId",
+                name: "IX_Financeiro_ClientesCpfCnpj",
                 table: "Financeiro",
-                column: "ClientesId");
+                column: "ClientesCpfCnpj");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Financeiro_PedidosId",
@@ -208,29 +217,39 @@ namespace ProjetoLaboratorio.Migrations
                 column: "PedidosId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Laudo_PedidoId",
-                table: "Laudo",
-                column: "PedidoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Pedidos_AnalisesModelId",
                 table: "Pedidos",
                 column: "AnalisesModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pedidos_ClientesModelId",
+                name: "IX_Pedidos_ClientesModelCpfCnpj",
                 table: "Pedidos",
-                column: "ClientesModelId");
+                column: "ClientesModelCpfCnpj");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pedidos_SolicitanteModelId",
+                name: "IX_Pedidos_SolicitanteModelCpfCnpj",
                 table: "Pedidos",
-                column: "SolicitanteModelId");
+                column: "SolicitanteModelCpfCnpj");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_TipoAnalisesModelId",
+                table: "Pedidos",
+                column: "TipoAnalisesModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Relatorio_LaudoId",
                 table: "Relatorio",
                 column: "LaudoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Resultado_PedidoId",
+                table: "Resultado",
+                column: "PedidoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TipoAnalise_AnalisesModelId",
+                table: "TipoAnalise",
+                column: "AnalisesModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -242,22 +261,22 @@ namespace ProjetoLaboratorio.Migrations
                 name: "Relatorio");
 
             migrationBuilder.DropTable(
-                name: "TipoAnalise");
-
-            migrationBuilder.DropTable(
-                name: "Laudo");
+                name: "Resultado");
 
             migrationBuilder.DropTable(
                 name: "Pedidos");
-
-            migrationBuilder.DropTable(
-                name: "Analises");
 
             migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Solicitantes");
+
+            migrationBuilder.DropTable(
+                name: "TipoAnalise");
+
+            migrationBuilder.DropTable(
+                name: "Analises");
         }
     }
 }

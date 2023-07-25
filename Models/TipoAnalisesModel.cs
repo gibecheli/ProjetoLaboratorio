@@ -8,7 +8,7 @@ namespace ProjetoLaboratorio.Models
         public int TipoId { get; set; }
 
         [Display(Name = "Tipo de Análise: ")]
-        public string TipoAnalise { get; set; }
+        public string TipoAnalises { get; set; }
 
         [Required(ErrorMessage = "O campo Descrição é obrigatório.")]
         [Display(Name = "Descrição:")]

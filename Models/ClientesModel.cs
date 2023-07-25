@@ -5,12 +5,15 @@ namespace ProjetoLaboratorio.Models
 {
     public class ClientesModel
     {
-        [Key]
         [Display(Name = "ID: ")]
         public int Id { get; set; }
 
         [Display(Name = "Tipo: ")]
         public string TipoPessoa { get; set; }
+
+        [Key]
+        [Display(Name = "CPF/CNPJ: ")]
+        public string CpfCnpj { get; set; }
 
         [StringLength(60)]
         [Required(ErrorMessage = "Campo nome é obrigatório")]
@@ -40,15 +43,9 @@ namespace ProjetoLaboratorio.Models
         [Required(ErrorMessage = "Campo Email é obrigatório...")]
         [Display(Name = "Email: ")]
         public string Email { get; set; }
-
-        [Display(Name = "CPF: ")]
-        public string? CPF { get; set; }
-
-        [Display(Name = "CNPJ: ")]
-        public string? CNPJ { get; set; }
-
+               
         [Display(Name = "IE: ")]
-        public string? IE { get; set; }
+        public string? InscricaoEstadual { get; set; }
 
         [Display(Name = "Razao Social: ")]
         public string? RazaoSocial { get; set; }

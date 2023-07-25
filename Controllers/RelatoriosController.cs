@@ -10,85 +10,85 @@ using ProjetoLaboratorio.Models;
 
 namespace ProjetoLaboratorio.Controllers
 {
-    public class ClientesController : Controller
+    public class RelatoriosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ClientesController(ApplicationDbContext context)
+        public RelatoriosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Clientes
+        // GET: Relatorios
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Clientes.ToListAsync());
+              return View(await _context.Relatorio.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: Relatorios/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Clientes == null)
+            if (id == null || _context.Relatorio == null)
             {
                 return NotFound();
             }
 
-            var clientesModel = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
-            if (clientesModel == null)
+            var relatoriosModel = await _context.Relatorio
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (relatoriosModel == null)
             {
                 return NotFound();
             }
 
-            return View(clientesModel);
+            return View(relatoriosModel);
         }
 
-        // GET: Clientes/Create
+        // GET: Relatorios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: Relatorios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,cpfCnpj,InscricaoEstadual,RazaoSocial,NomePropriedade,DataDoCadastro")] ClientesModel clientesModel)
+        public async Task<IActionResult> Create([Bind("Id,ResultadoId,Conteudo,DataRelatorio")] RelatoriosModel relatoriosModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(clientesModel);
+                _context.Add(relatoriosModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(clientesModel);
+            return View(relatoriosModel);
         }
 
-        // GET: Clientes/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: Relatorios/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Clientes == null)
+            if (id == null || _context.Relatorio == null)
             {
                 return NotFound();
             }
 
-            var clientesModel = await _context.Clientes.FindAsync(id);
-            if (clientesModel == null)
+            var relatoriosModel = await _context.Relatorio.FindAsync(id);
+            if (relatoriosModel == null)
             {
                 return NotFound();
             }
-            return View(clientesModel);
+            return View(relatoriosModel);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Relatorios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,cpfCnpj,InscricaoEstadual,RazaoSocial,NomePropriedade,DataDoCadastro")] ClientesModel clientesModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ResultadoId,Conteudo,DataRelatorio")] RelatoriosModel relatoriosModel)
         {
-            if (id != clientesModel.CpfCnpj)
+            if (id != relatoriosModel.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(clientesModel);
+                    _context.Update(relatoriosModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientesModelExists(clientesModel.CpfCnpj))
+                    if (!RelatoriosModelExists(relatoriosModel.Id))
                     {
                         return NotFound();
                     }
@@ -113,49 +113,49 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(clientesModel);
+            return View(relatoriosModel);
         }
 
-        // GET: Clientes/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: Relatorios/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Clientes == null)
+            if (id == null || _context.Relatorio == null)
             {
                 return NotFound();
             }
 
-            var clientesModel = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
-            if (clientesModel == null)
+            var relatoriosModel = await _context.Relatorio
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (relatoriosModel == null)
             {
                 return NotFound();
             }
 
-            return View(clientesModel);
+            return View(relatoriosModel);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Relatorios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Clientes == null)
+            if (_context.Relatorio == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Clientes'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Relatorio'  is null.");
             }
-            var clientesModel = await _context.Clientes.FindAsync(id);
-            if (clientesModel != null)
+            var relatoriosModel = await _context.Relatorio.FindAsync(id);
+            if (relatoriosModel != null)
             {
-                _context.Clientes.Remove(clientesModel);
+                _context.Relatorio.Remove(relatoriosModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientesModelExists(string id)
+        private bool RelatoriosModelExists(int id)
         {
-          return _context.Clientes.Any(e => e.CpfCnpj == id);
+          return _context.Relatorio.Any(e => e.Id == id);
         }
     }
 }

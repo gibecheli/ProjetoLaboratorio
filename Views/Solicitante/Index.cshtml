@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.TipoPessoa)
             </th>
             <th>
@@ -37,13 +40,7 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPF)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CNPJ)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IE)
+                @Html.DisplayNameFor(model => model.InscricaoEstadual)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RazaoSocial)
@@ -57,6 +54,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoPessoa)
             </td>
@@ -82,13 +82,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CNPJ)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IE)
+                @Html.DisplayFor(modelItem => item.InscricaoEstadual)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RazaoSocial)
@@ -97,9 +91,9 @@
                 @Html.DisplayFor(modelItem => item.DataDeCadastro)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CpfCnpj">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CpfCnpj">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CpfCnpj">Delete</a>
             </td>
         </tr>
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "B4CTbxHlxIk1+tK/cn8XG4zThPzhDYTXEnEToC+AlcQ=",
+  "Hash": "me0Vjo3zDzx4yfbE1t+UMGsO8G4ApcIHOJ6V5q7Cn4I=",
   "Source": "ProjetoLaboratorio",
   "BasePath": "_content/ProjetoLaboratorio",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\img\\logo.jpg",
+      "SourceId": "ProjetoLaboratorio",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\",
+      "BasePath": "_content/ProjetoLaboratorio",
+      "RelativePath": "img/logo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo.jpg"
     },
     {
       "Identity": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\js\\site.js",

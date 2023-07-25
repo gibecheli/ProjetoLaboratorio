@@ -4,11 +4,15 @@ namespace ProjetoLaboratorio.Models
 {
     public class SolicitanteModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O campo Tipo de Pessoa é obrigatório.")]
         public string TipoPessoa { get; set; }
+
+        [Key]
+        [Required(ErrorMessage = "Campo CPF ou CNPJ é obrigatório...")]
+        [Display(Name = "CPF/CNPJ: ")]
+        public string CpfCnpj { get; set; }
 
         [Required(ErrorMessage = "O campo Nome é obrigatório.")]
         public string Nome { get; set; }
@@ -22,6 +26,7 @@ namespace ProjetoLaboratorio.Models
         [Required(ErrorMessage = "O campo Estado é obrigatório.")]
         public string Estado { get; set; }
 
+        [Display(Name = "Telefone: ")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "O campo Celular é obrigatório.")]
@@ -29,14 +34,9 @@ namespace ProjetoLaboratorio.Models
 
         [Required(ErrorMessage = "O campo Email é obrigatório.")]
         public string Email { get; set; }
-               
-        [Required(ErrorMessage = "O campo CPF é obrigatório.")]
-        public string CPF { get; set; }
-
-        [Required(ErrorMessage = "O campo CNPJ é obrigatório.")]
-        public string? CNPJ { get; set; }
-
-        public string? IE { get; set; }
+                       
+        [Display(Name = "IE: ")]
+        public string? InscricaoEstadual { get; set; }
 
         [Required(ErrorMessage = "O campo Razão Social é obrigatório.")]
         public string? RazaoSocial { get; set; }

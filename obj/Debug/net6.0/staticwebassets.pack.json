@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\img\\logo.jpg",
+      "PackagePath": "staticwebassets\\img\\logo.jpg"
+    },
+    {
       "Id": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

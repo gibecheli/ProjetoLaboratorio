@@ -26,7 +26,9 @@ namespace ProjetoLaboratorio.Models
         public int AnalisesModelId { get; set; }
 
         [Display(Name = "Tipo de Análise: ")]
-        public string TipoAnalise { get; set; }
+        public TipoAnalisesModel TipoAnalisesModel {get; set; }
+        [ForeignKey("TipoAnalises")]
+        public int TipoAnalisesModelId { get; set; }
 
         [Display(Name = "Quantidade")]
         [DisplayFormat(DataFormatString = "{0:N2}")]

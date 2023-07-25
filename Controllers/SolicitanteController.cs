@@ -26,7 +26,7 @@ namespace ProjetoLaboratorio.Controllers
         }
 
         // GET: Solicitante/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.Solicitantes == null)
             {
@@ -34,7 +34,7 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var solicitanteModel = await _context.Solicitantes
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
             if (solicitanteModel == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,CPF,CNPJ,IE,RazaoSocial,DataDeCadastro")] SolicitanteModel solicitanteModel)
+        public async Task<IActionResult> Create([Bind("Id,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,cpfCnpj,InscricaoEstadual,RazaoSocial,DataDeCadastro")] SolicitanteModel solicitanteModel)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace ProjetoLaboratorio.Controllers
         }
 
         // GET: Solicitante/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.Solicitantes == null)
             {
@@ -86,9 +86,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,CPF,CNPJ,IE,RazaoSocial,DataDeCadastro")] SolicitanteModel solicitanteModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,cpfCnpj,InscricaoEstadual,RazaoSocial,DataDeCadastro")] SolicitanteModel solicitanteModel)
         {
-            if (id != solicitanteModel.Id)
+            if (id != solicitanteModel.CpfCnpj)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SolicitanteModelExists(solicitanteModel.Id))
+                    if (!SolicitanteModelExists(solicitanteModel.CpfCnpj))
                     {
                         return NotFound();
                     }
@@ -117,7 +117,7 @@ namespace ProjetoLaboratorio.Controllers
         }
 
         // GET: Solicitante/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Solicitantes == null)
             {
@@ -125,7 +125,7 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var solicitanteModel = await _context.Solicitantes
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
             if (solicitanteModel == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace ProjetoLaboratorio.Controllers
         // POST: Solicitante/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.Solicitantes == null)
             {
@@ -153,9 +153,9 @@ namespace ProjetoLaboratorio.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SolicitanteModelExists(int id)
+        private bool SolicitanteModelExists(string id)
         {
-          return _context.Solicitantes.Any(e => e.Id == id);
+          return _context.Solicitantes.Any(e => e.CpfCnpj == id);
         }
     }
 }
