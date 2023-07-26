@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoLaboratorio.Models.PedidosModel>
+﻿@model IEnumerable<PedidosModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ClientesModelId)
+                @Html.DisplayNameFor(model => model.ClienteId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SolicitanteModelId)
+                @Html.DisplayNameFor(model => model.SolicitanteId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnalisesModel)
+                @Html.DisplayNameFor(model => model.Analise)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoAnalisesModel)
+                @Html.DisplayNameFor(model => model.TipoAnalise)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.quantidade)
+                @Html.DisplayNameFor(model => model.Quantidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.valor)
+                @Html.DisplayNameFor(model => model.Valor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataEntrada)
@@ -43,22 +43,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ClientesModelId)
+                @Html.DisplayFor(modelItem => item.ClienteId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SolicitanteModelId)
+                @Html.DisplayFor(modelItem => item.SolicitanteId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AnalisesModel.Descricao)
+                @Html.DisplayFor(modelItem => item.Analise.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoAnalisesModel.Descricao)
+                @Html.DisplayFor(modelItem => item.TipoAnalise.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.quantidade)
+                @Html.DisplayFor(modelItem => item.Quantidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.valor)
+                @Html.DisplayFor(modelItem => item.Valor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataEntrada)

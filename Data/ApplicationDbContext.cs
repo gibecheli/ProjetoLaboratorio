@@ -17,7 +17,6 @@ namespace ProjetoLaboratorio.Data
         public DbSet<FinanceiroModel> Financeiro { get; set; }
         public DbSet<RelatoriosModel> Relatorio { get; set; }
         public DbSet<ResultadoModel> Resultado { get; set; }
-
-
+        public object Users { get; internal set; }
     }
 }

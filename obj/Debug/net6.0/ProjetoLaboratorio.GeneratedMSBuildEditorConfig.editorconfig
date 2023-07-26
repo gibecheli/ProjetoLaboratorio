@@ -64,10 +64,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcbG9naW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Pedidos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -106,6 +102,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Relatorios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRvcmlvc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Resultado/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0YWRvXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Resultado/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0YWRvXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Resultado/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0YWRvXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Resultado/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0YWRvXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Resultado/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0YWRvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/ProjetoTCC/ProjetoLaboratorio/ProjetoLaboratorio/Views/Shared/Error.cshtml]

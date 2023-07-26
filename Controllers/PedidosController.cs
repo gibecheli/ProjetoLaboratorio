@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoLaboratorio.Data;
-using ProjetoLaboratorio.Models;
 
 namespace ProjetoLaboratorio.Controllers
 {
@@ -22,7 +21,7 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Pedidos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pedidos.Include(p => p.AnalisesModel).Include(p => p.TipoAnalisesModel);
+            var applicationDbContext = _context.Pedidos.Include(p => p.Analise).Include(p => p.TipoAnalise);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,8 +34,8 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var pedidosModel = await _context.Pedidos
-                .Include(p => p.AnalisesModel)
-                .Include(p => p.TipoAnalisesModel)
+                .Include(p => p.Analise)
+                .Include(p => p.TipoAnalise)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedidosModel == null)
             {
@@ -49,8 +48,8 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Pedidos/Create
         public IActionResult Create()
         {
-            ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao");
-            ViewData["TipoAnalisesModelId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao");
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao");
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao");
             return View();
         }
 
@@ -59,7 +58,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PedidoId,ClientesModelId,SolicitanteModelId,AnalisesModelId,TipoAnalisesModelId,quantidade,valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
+        public async Task<IActionResult> Create([Bind("PedidoId,ClienteId,SolicitanteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +66,8 @@ namespace ProjetoLaboratorio.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnalisesModelId);
-            ViewData["TipoAnalisesModelId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnalisesModelId);
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnaliseId);
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnaliseId);
             return View(pedidosModel);
         }
 
@@ -85,8 +84,8 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return NotFound();
             }
-            ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnalisesModelId);
-            ViewData["TipoAnalisesModelId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnalisesModelId);
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnaliseId);
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnaliseId);
             return View(pedidosModel);
         }
 
@@ -95,7 +94,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClientesModelId,SolicitanteModelId,AnalisesModelId,TipoAnalisesModelId,quantidade,valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
+        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClienteId,SolicitanteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
         {
             if (id != pedidosModel.PedidoId)
             {
@@ -122,8 +121,8 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnalisesModelId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnalisesModelId);
-            ViewData["TipoAnalisesModelId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnalisesModelId);
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnaliseId);
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnaliseId);
             return View(pedidosModel);
         }
 
@@ -136,8 +135,8 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var pedidosModel = await _context.Pedidos
-                .Include(p => p.AnalisesModel)
-                .Include(p => p.TipoAnalisesModel)
+                .Include(p => p.Analise)
+                .Include(p => p.TipoAnalise)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedidosModel == null)
             {

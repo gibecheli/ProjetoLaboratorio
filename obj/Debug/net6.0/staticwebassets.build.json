@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "me0Vjo3zDzx4yfbE1t+UMGsO8G4ApcIHOJ6V5q7Cn4I=",
+  "Hash": "ouB4bADL/XHj0u6tycWg7HTqhbNDAEqyQ+/e7Pc3hpY=",
   "Source": "ProjetoLaboratorio",
   "BasePath": "_content/ProjetoLaboratorio",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ProjetoLaboratorio.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\css\\litera.css",
+      "SourceId": "ProjetoLaboratorio",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\",
+      "BasePath": "_content/ProjetoLaboratorio",
+      "RelativePath": "css/litera.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\litera.css"
     },
     {
       "Identity": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\css\\site.css",

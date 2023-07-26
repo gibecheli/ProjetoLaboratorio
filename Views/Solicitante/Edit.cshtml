@@ -22,6 +22,7 @@
                 <input asp-for="TipoPessoa" class="form-control" />
                 <span asp-validation-for="TipoPessoa" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="CpfCnpj" />
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -57,7 +58,6 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="CpfCnpj" />
             <div class="form-group">
                 <label asp-for="InscricaoEstadual" class="control-label"></label>
                 <input asp-for="InscricaoEstadual" class="form-control" />
