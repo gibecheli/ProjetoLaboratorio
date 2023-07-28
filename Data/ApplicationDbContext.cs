@@ -9,13 +9,13 @@ namespace ProjetoLaboratorio.Data
         {
         }
 
-        public DbSet<ClientesModel> Clientes { get; set; }
+        public DbSet<ClienteModel> Clientes { get; set; }
         public DbSet<SolicitanteModel> Solicitantes { get; set; }
-        public DbSet<AnalisesModel> Analises { get; set; }
-        public DbSet<PedidosModel> Pedidos { get; set; }
-        public DbSet<TipoAnalisesModel> TipoAnalise { get; set; }
+        public DbSet<AnaliseModel> Analises { get; set; }
+        public DbSet<PedidoModel> Pedidos { get; set; }
+        public DbSet<TipoAnaliseModel> TipoAnalise { get; set; }
         public DbSet<FinanceiroModel> Financeiro { get; set; }
-        public DbSet<RelatoriosModel> Relatorio { get; set; }
+        public DbSet<RelatorioModel> Relatorio { get; set; }
         public DbSet<ResultadoModel> Resultado { get; set; }
         public object Users { get; internal set; }
     }

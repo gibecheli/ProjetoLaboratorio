@@ -10,90 +10,90 @@ using ProjetoLaboratorio.Models;
 
 namespace ProjetoLaboratorio.Controllers
 {
-    public class ResultadoController : Controller
+    public class FinanceiroController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ResultadoController(ApplicationDbContext context)
+        public FinanceiroController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Resultado
+        // GET: Financeiro
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Resultado.Include(r => r.Pedido);
+            var applicationDbContext = _context.Financeiro.Include(f => f.Pedidos);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Resultado/Details/5
+        // GET: Financeiro/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Resultado == null)
+            if (id == null || _context.Financeiro == null)
             {
                 return NotFound();
             }
 
-            var resultadoModel = await _context.Resultado
-                .Include(r => r.Pedido)
+            var financeiroModel = await _context.Financeiro
+                .Include(f => f.Pedidos)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (resultadoModel == null)
+            if (financeiroModel == null)
             {
                 return NotFound();
             }
 
-            return View(resultadoModel);
+            return View(financeiroModel);
         }
 
-        // GET: Resultado/Create
+        // GET: Financeiro/Create
         public IActionResult Create()
         {
-            ViewData["PedidoId"] = new SelectList(_context.Pedidos, "PedidoId", "SolicitanteCpfCnpj");
+            ViewData["PedidosId"] = new SelectList(_context.Pedidos, "PedidoId", "ClienteId");
             return View();
         }
 
-        // POST: Resultado/Create
+        // POST: Financeiro/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PedidoId,Laudo,DataLaudo,EmailCliente")] ResultadoModel resultadoModel)
+        public async Task<IActionResult> Create([Bind("Id,PedidosId,ValorTotal,FormaPagamento,StatusPagamento")] FinanceiroModel financeiroModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(resultadoModel);
+                _context.Add(financeiroModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PedidoId"] = new SelectList(_context.Pedidos, "PedidoId", "SolicitanteCpfCnpj", resultadoModel.PedidoId);
-            return View(resultadoModel);
+            ViewData["PedidosId"] = new SelectList(_context.Pedidos, "PedidoId", "ClienteId", financeiroModel.PedidosId);
+            return View(financeiroModel);
         }
 
-        // GET: Resultado/Edit/5
+        // GET: Financeiro/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Resultado == null)
+            if (id == null || _context.Financeiro == null)
             {
                 return NotFound();
             }
 
-            var resultadoModel = await _context.Resultado.FindAsync(id);
-            if (resultadoModel == null)
+            var financeiroModel = await _context.Financeiro.FindAsync(id);
+            if (financeiroModel == null)
             {
                 return NotFound();
             }
-            ViewData["PedidoId"] = new SelectList(_context.Pedidos, "PedidoId", "SolicitanteCpfCnpj", resultadoModel.PedidoId);
-            return View(resultadoModel);
+            ViewData["PedidosId"] = new SelectList(_context.Pedidos, "PedidoId", "ClienteId", financeiroModel.PedidosId);
+            return View(financeiroModel);
         }
 
-        // POST: Resultado/Edit/5
+        // POST: Financeiro/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PedidoId,Laudo,DataLaudo,EmailCliente")] ResultadoModel resultadoModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PedidosId,ValorTotal,FormaPagamento,StatusPagamento")] FinanceiroModel financeiroModel)
         {
-            if (id != resultadoModel.Id)
+            if (id != financeiroModel.Id)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(resultadoModel);
+                    _context.Update(financeiroModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ResultadoModelExists(resultadoModel.Id))
+                    if (!FinanceiroModelExists(financeiroModel.Id))
                     {
                         return NotFound();
                     }
@@ -118,51 +118,51 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PedidoId"] = new SelectList(_context.Pedidos, "PedidoId", "SolicitanteCpfCnpj", resultadoModel.PedidoId);
-            return View(resultadoModel);
+            ViewData["PedidosId"] = new SelectList(_context.Pedidos, "PedidoId", "ClienteId", financeiroModel.PedidosId);
+            return View(financeiroModel);
         }
 
-        // GET: Resultado/Delete/5
+        // GET: Financeiro/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Resultado == null)
+            if (id == null || _context.Financeiro == null)
             {
                 return NotFound();
             }
 
-            var resultadoModel = await _context.Resultado
-                .Include(r => r.Pedido)
+            var financeiroModel = await _context.Financeiro
+                .Include(f => f.Pedidos)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (resultadoModel == null)
+            if (financeiroModel == null)
             {
                 return NotFound();
             }
 
-            return View(resultadoModel);
+            return View(financeiroModel);
         }
 
-        // POST: Resultado/Delete/5
+        // POST: Financeiro/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Resultado == null)
+            if (_context.Financeiro == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Resultado'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Financeiro'  is null.");
             }
-            var resultadoModel = await _context.Resultado.FindAsync(id);
-            if (resultadoModel != null)
+            var financeiroModel = await _context.Financeiro.FindAsync(id);
+            if (financeiroModel != null)
             {
-                _context.Resultado.Remove(resultadoModel);
+                _context.Financeiro.Remove(financeiroModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ResultadoModelExists(int id)
+        private bool FinanceiroModelExists(int id)
         {
-          return _context.Resultado.Any(e => e.Id == id);
+          return _context.Financeiro.Any(e => e.Id == id);
         }
     }
 }

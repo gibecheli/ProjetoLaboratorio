@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoLaboratorio.Models.ClientesModel>
+﻿@model IEnumerable<ProjetoLaboratorio.Models.ClienteModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,9 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.TipoPessoa)
             </th>
@@ -43,13 +40,10 @@
                 @Html.DisplayNameFor(model => model.InscricaoEstadual)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RazaoSocial)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.NomePropriedade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataDoCadastro)
+                @Html.DisplayNameFor(model => model.DataCadastro)
             </th>
             <th></th>
         </tr>
@@ -57,9 +51,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoPessoa)
             </td>
@@ -88,13 +79,10 @@
                 @Html.DisplayFor(modelItem => item.InscricaoEstadual)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RazaoSocial)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.NomePropriedade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataDoCadastro)
+                @Html.DisplayFor(modelItem => item.DataCadastro)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CpfCnpj">Edit</a> |

@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-
 
 namespace ProjetoLaboratorio.Models
 {
@@ -18,6 +16,7 @@ namespace ProjetoLaboratorio.Models
         Cancelado
     }
 
+    [Table("Financeiro")]
     public class FinanceiroModel
     {
         [Key]
@@ -28,9 +27,10 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Pedido")]
         public int PedidosId { get; set; }
 
-        public PedidosModel Pedidos { get; set; }
-        public ClientesModel Clientes { get; set; }
+        public PedidoModel Pedidos { get; set; }
+        public ClienteModel Clientes { get; set; }
 
+        [Column(TypeName = "decimal(10, 2)")]
         [Display(Name = "Valor Total")]
         [DisplayFormat(DataFormatString = "{0:C3}")]
         public decimal ValorTotal { get; set; }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoLaboratorio.Models.ResultadoModel>
+﻿@model IEnumerable<ProjetoLaboratorio.Models.FinanceiroModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Pedido)
+                @Html.DisplayNameFor(model => model.Pedidos)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Laudo)
+                @Html.DisplayNameFor(model => model.ValorTotal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataLaudo)
+                @Html.DisplayNameFor(model => model.FormaPagamento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailCliente)
+                @Html.DisplayNameFor(model => model.StatusPagamento)
             </th>
             <th></th>
         </tr>
@@ -31,16 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Pedido.Solicitante.CpfCnpj)
+                @Html.DisplayFor(modelItem => item.Pedidos.ClienteId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Laudo)
+                @Html.DisplayFor(modelItem => item.ValorTotal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataLaudo)
+                @Html.DisplayFor(modelItem => item.FormaPagamento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EmailCliente)
+                @Html.DisplayFor(modelItem => item.StatusPagamento)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

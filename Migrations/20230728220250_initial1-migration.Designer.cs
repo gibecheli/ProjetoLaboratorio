@@ -12,8 +12,8 @@ using ProjetoLaboratorio.Data;
 namespace ProjetoLaboratorio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230726020755_criacao-controllers")]
-    partial class criacaocontrollers
+    [Migration("20230728220250_initial1-migration")]
+    partial class initial1migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,59 +24,22 @@ namespace ProjetoLaboratorio.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("PedidosModel", b =>
+            modelBuilder.Entity("AnaliseModelTipoAnaliseModel", b =>
                 {
-                    b.Property<int>("PedidoId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("AnalisesId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PedidoId"), 1L, 1);
-
-                    b.Property<int>("AnaliseId")
+                    b.Property<int>("TiposAnaliseTipoAnaliseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ClienteCpfCnpj")
-                        .HasColumnType("nvarchar(450)");
+                    b.HasKey("AnalisesId", "TiposAnaliseTipoAnaliseId");
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
+                    b.HasIndex("TiposAnaliseTipoAnaliseId");
 
-                    b.Property<DateTime>("DataEntrada")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataSaida")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("Quantidade")
-                        .HasColumnType("real");
-
-                    b.Property<string>("SolicitanteCpfCnpj")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SolicitanteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoAnaliseId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Valor")
-                        .HasColumnType("real");
-
-                    b.HasKey("PedidoId");
-
-                    b.HasIndex("AnaliseId");
-
-                    b.HasIndex("ClienteCpfCnpj");
-
-                    b.HasIndex("SolicitanteCpfCnpj");
-
-                    b.HasIndex("TipoAnaliseId");
-
-                    b.ToTable("Pedidos");
+                    b.ToTable("AnaliseModelTipoAnaliseModel");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.AnalisesModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.AnaliseModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,58 +60,52 @@ namespace ProjetoLaboratorio.Migrations
                     b.ToTable("Analises");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.ClientesModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.ClienteModel", b =>
                 {
                     b.Property<string>("CpfCnpj")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("Celular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DataDoCadastro")
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("InscricaoEstadual")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("NomePropriedade")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RazaoSocial")
+                    b.Property<string>("NomePropriedade")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
-                    b.Property<string>("TipoPessoa")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TipoPessoa")
+                        .HasColumnType("int");
 
                     b.HasKey("CpfCnpj");
 
@@ -164,7 +121,7 @@ namespace ProjetoLaboratorio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClientesCpfCnpj")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("FormaPagamento")
                         .IsRequired()
@@ -177,7 +134,7 @@ namespace ProjetoLaboratorio.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
@@ -188,7 +145,55 @@ namespace ProjetoLaboratorio.Migrations
                     b.ToTable("Financeiro");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.RelatoriosModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.PedidoModel", b =>
+                {
+                    b.Property<int>("PedidoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PedidoId"), 1L, 1);
+
+                    b.Property<int>("AnaliseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClienteId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(14)");
+
+                    b.Property<DateTime>("DataEntrada")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataSaida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Observacao")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TipoAnaliseId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("PedidoId");
+
+                    b.HasIndex("AnaliseId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("TipoAnaliseId");
+
+                    b.ToTable("Pedidos");
+                });
+
+            modelBuilder.Entity("ProjetoLaboratorio.Models.RelatorioModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -199,21 +204,13 @@ namespace ProjetoLaboratorio.Migrations
                     b.Property<DateTime>("DataRelatorio")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LaudoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ResultadoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalAnalisesPorPeriodo")
                         .HasColumnType("int");
 
-                    b.Property<float>("ValorFinanceiroPorPeriodo")
-                        .HasColumnType("real");
+                    b.Property<decimal>("ValorFinanceiroPorPeriodo")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LaudoId");
 
                     b.ToTable("Relatorio");
                 });
@@ -248,126 +245,99 @@ namespace ProjetoLaboratorio.Migrations
             modelBuilder.Entity("ProjetoLaboratorio.Models.SolicitanteModel", b =>
                 {
                     b.Property<string>("CpfCnpj")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("Celular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("DataDeCadastro")
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("InscricaoEstadual")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RazaoSocial")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
-                    b.Property<string>("TipoPessoa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TipoPessoa")
+                        .HasColumnType("int");
 
                     b.HasKey("CpfCnpj");
 
                     b.ToTable("Solicitantes");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.TipoAnalisesModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.TipoAnaliseModel", b =>
                 {
-                    b.Property<int>("TipoId")
+                    b.Property<int>("TipoAnaliseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoId"), 1L, 1);
-
-                    b.Property<int?>("AnalisesModelId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoAnaliseId"), 1L, 1);
 
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TipoAnalises")
+                    b.Property<string>("TipoAnalise")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("valor")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(10,2)");
 
-                    b.HasKey("TipoId");
-
-                    b.HasIndex("AnalisesModelId");
+                    b.HasKey("TipoAnaliseId");
 
                     b.ToTable("TipoAnalise");
                 });
 
-            modelBuilder.Entity("PedidosModel", b =>
+            modelBuilder.Entity("AnaliseModelTipoAnaliseModel", b =>
                 {
-                    b.HasOne("ProjetoLaboratorio.Models.AnalisesModel", "Analise")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("AnaliseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjetoLaboratorio.Models.ClientesModel", "Cliente")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("ClienteCpfCnpj");
-
-                    b.HasOne("ProjetoLaboratorio.Models.SolicitanteModel", "Solicitante")
+                    b.HasOne("ProjetoLaboratorio.Models.AnaliseModel", null)
                         .WithMany()
-                        .HasForeignKey("SolicitanteCpfCnpj")
+                        .HasForeignKey("AnalisesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjetoLaboratorio.Models.TipoAnalisesModel", "TipoAnalise")
+                    b.HasOne("ProjetoLaboratorio.Models.TipoAnaliseModel", null)
                         .WithMany()
-                        .HasForeignKey("TipoAnaliseId")
+                        .HasForeignKey("TiposAnaliseTipoAnaliseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Analise");
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Solicitante");
-
-                    b.Navigation("TipoAnalise");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.FinanceiroModel", b =>
                 {
-                    b.HasOne("ProjetoLaboratorio.Models.ClientesModel", "Clientes")
+                    b.HasOne("ProjetoLaboratorio.Models.ClienteModel", "Clientes")
                         .WithMany()
                         .HasForeignKey("ClientesCpfCnpj");
 
-                    b.HasOne("PedidosModel", "Pedidos")
-                        .WithMany()
+                    b.HasOne("ProjetoLaboratorio.Models.PedidoModel", "Pedidos")
+                        .WithMany("Financeiros")
                         .HasForeignKey("PedidosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -377,19 +347,37 @@ namespace ProjetoLaboratorio.Migrations
                     b.Navigation("Pedidos");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.RelatoriosModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.PedidoModel", b =>
                 {
-                    b.HasOne("ProjetoLaboratorio.Models.ResultadoModel", "Laudo")
-                        .WithMany()
-                        .HasForeignKey("LaudoId");
+                    b.HasOne("ProjetoLaboratorio.Models.AnaliseModel", "Analise")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("AnaliseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Laudo");
+                    b.HasOne("ProjetoLaboratorio.Models.ClienteModel", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoLaboratorio.Models.TipoAnaliseModel", "TipoAnalise")
+                        .WithMany()
+                        .HasForeignKey("TipoAnaliseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Analise");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("TipoAnalise");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.ResultadoModel", b =>
                 {
-                    b.HasOne("PedidosModel", "Pedido")
-                        .WithMany("Resultado")
+                    b.HasOne("ProjetoLaboratorio.Models.PedidoModel", "Pedido")
+                        .WithMany("Resultados")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -397,28 +385,16 @@ namespace ProjetoLaboratorio.Migrations
                     b.Navigation("Pedido");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.TipoAnalisesModel", b =>
-                {
-                    b.HasOne("ProjetoLaboratorio.Models.AnalisesModel", null)
-                        .WithMany("TipoAnalises")
-                        .HasForeignKey("AnalisesModelId");
-                });
-
-            modelBuilder.Entity("PedidosModel", b =>
-                {
-                    b.Navigation("Resultado");
-                });
-
-            modelBuilder.Entity("ProjetoLaboratorio.Models.AnalisesModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.AnaliseModel", b =>
                 {
                     b.Navigation("Pedidos");
-
-                    b.Navigation("TipoAnalises");
                 });
 
-            modelBuilder.Entity("ProjetoLaboratorio.Models.ClientesModel", b =>
+            modelBuilder.Entity("ProjetoLaboratorio.Models.PedidoModel", b =>
                 {
-                    b.Navigation("Pedidos");
+                    b.Navigation("Financeiros");
+
+                    b.Navigation("Resultados");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoLaboratorio.Data;
+using ProjetoLaboratorio.Models;
 
 namespace ProjetoLaboratorio.Controllers
 {
@@ -21,7 +22,7 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Pedidos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pedidos.Include(p => p.Analise).Include(p => p.TipoAnalise);
+            var applicationDbContext = _context.Pedidos.Include(p => p.Analise).Include(p => p.Cliente).Include(p => p.TipoAnalise);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -33,23 +34,25 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var pedidosModel = await _context.Pedidos
+            var pedidoModel = await _context.Pedidos
                 .Include(p => p.Analise)
+                .Include(p => p.Cliente)
                 .Include(p => p.TipoAnalise)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
-            if (pedidosModel == null)
+            if (pedidoModel == null)
             {
                 return NotFound();
             }
 
-            return View(pedidosModel);
+            return View(pedidoModel);
         }
 
         // GET: Pedidos/Create
         public IActionResult Create()
         {
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao");
-            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj");
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao");
             return View();
         }
 
@@ -58,17 +61,18 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PedidoId,ClienteId,SolicitanteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
+        public async Task<IActionResult> Create([Bind("PedidoId,ClienteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,Total,Observacao,DataEntrada,DataSaida")] PedidoModel pedidoModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pedidosModel);
+                _context.Add(pedidoModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnaliseId);
-            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnaliseId);
-            return View(pedidosModel);
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.ClienteId);
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
+            return View(pedidoModel);
         }
 
         // GET: Pedidos/Edit/5
@@ -79,14 +83,15 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var pedidosModel = await _context.Pedidos.FindAsync(id);
-            if (pedidosModel == null)
+            var pedidoModel = await _context.Pedidos.FindAsync(id);
+            if (pedidoModel == null)
             {
                 return NotFound();
             }
-            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnaliseId);
-            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnaliseId);
-            return View(pedidosModel);
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.ClienteId);
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
+            return View(pedidoModel);
         }
 
         // POST: Pedidos/Edit/5
@@ -94,9 +99,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClienteId,SolicitanteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,DataEntrada,DataSaida")] PedidosModel pedidosModel)
+        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClienteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,Total,Observacao,DataEntrada,DataSaida")] PedidoModel pedidoModel)
         {
-            if (id != pedidosModel.PedidoId)
+            if (id != pedidoModel.PedidoId)
             {
                 return NotFound();
             }
@@ -105,12 +110,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(pedidosModel);
+                    _context.Update(pedidoModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PedidosModelExists(pedidosModel.PedidoId))
+                    if (!PedidoModelExists(pedidoModel.PedidoId))
                     {
                         return NotFound();
                     }
@@ -121,9 +126,10 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidosModel.AnaliseId);
-            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoId", "Descricao", pedidosModel.TipoAnaliseId);
-            return View(pedidosModel);
+            ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.ClienteId);
+            ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
+            return View(pedidoModel);
         }
 
         // GET: Pedidos/Delete/5
@@ -134,16 +140,17 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var pedidosModel = await _context.Pedidos
+            var pedidoModel = await _context.Pedidos
                 .Include(p => p.Analise)
+                .Include(p => p.Cliente)
                 .Include(p => p.TipoAnalise)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
-            if (pedidosModel == null)
+            if (pedidoModel == null)
             {
                 return NotFound();
             }
 
-            return View(pedidosModel);
+            return View(pedidoModel);
         }
 
         // POST: Pedidos/Delete/5
@@ -155,17 +162,17 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Pedidos'  is null.");
             }
-            var pedidosModel = await _context.Pedidos.FindAsync(id);
-            if (pedidosModel != null)
+            var pedidoModel = await _context.Pedidos.FindAsync(id);
+            if (pedidoModel != null)
             {
-                _context.Pedidos.Remove(pedidosModel);
+                _context.Pedidos.Remove(pedidoModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PedidosModelExists(int id)
+        private bool PedidoModelExists(int id)
         {
           return _context.Pedidos.Any(e => e.PedidoId == id);
         }

@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace ProjetoLaboratorio.Models
 {
-    public class AnalisesModel
+    [Table("Analises")]
+    public class AnaliseModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,8 +21,7 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Descrição:")]
         public string Descricao { get; set; }
 
-        public ICollection<PedidosModel> Pedidos { get; set; }
-        public ICollection<TipoAnalisesModel> TipoAnalises { get; set; }
-
+        public ICollection<TipoAnaliseModel> TiposAnalise { get; set; }
+        public ICollection<PedidoModel> Pedidos { get; set; }
     }
 }

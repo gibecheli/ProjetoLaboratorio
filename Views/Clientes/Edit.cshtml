@@ -1,4 +1,4 @@
-﻿@model ProjetoLaboratorio.Models.ClientesModel
+﻿@model ProjetoLaboratorio.Models.ClienteModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,23 +6,18 @@
 
 <h1>Edit</h1>
 
-<h4>ClientesModel</h4>
+<h4>ClienteModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="CpfCnpj" />
             <div class="form-group">
                 <label asp-for="TipoPessoa" class="control-label"></label>
-                <input asp-for="TipoPessoa" class="form-control" />
+                <select asp-for="TipoPessoa" class="form-control"></select>
                 <span asp-validation-for="TipoPessoa" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="CpfCnpj" />
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -64,19 +59,14 @@
                 <span asp-validation-for="InscricaoEstadual" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RazaoSocial" class="control-label"></label>
-                <input asp-for="RazaoSocial" class="form-control" />
-                <span asp-validation-for="RazaoSocial" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="NomePropriedade" class="control-label"></label>
                 <input asp-for="NomePropriedade" class="form-control" />
                 <span asp-validation-for="NomePropriedade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataDoCadastro" class="control-label"></label>
-                <input asp-for="DataDoCadastro" class="form-control" />
-                <span asp-validation-for="DataDoCadastro" class="text-danger"></span>
+                <label asp-for="DataCadastro" class="control-label"></label>
+                <input asp-for="DataCadastro" class="form-control" />
+                <span asp-validation-for="DataCadastro" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ouB4bADL/XHj0u6tycWg7HTqhbNDAEqyQ+/e7Pc3hpY=",
+  "Hash": "VqoiLZAM+S+5Ttx2EhEvk1+U5nFsZ3rbna61sAeMm/g=",
   "Source": "ProjetoLaboratorio",
   "BasePath": "_content/ProjetoLaboratorio",
   "Mode": "Default",
@@ -678,6 +678,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Identity": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\lib\\bootstrap\\dist\\css\\litera.css",
+      "SourceId": "ProjetoLaboratorio",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\",
+      "BasePath": "_content/ProjetoLaboratorio",
+      "RelativePath": "lib/bootstrap/dist/css/litera.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\litera.css"
     },
     {
       "Identity": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",

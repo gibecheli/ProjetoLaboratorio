@@ -33,14 +33,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var tipoAnalisesModel = await _context.TipoAnalise
-                .FirstOrDefaultAsync(m => m.TipoId == id);
-            if (tipoAnalisesModel == null)
+            var tipoAnaliseModel = await _context.TipoAnalise
+                .FirstOrDefaultAsync(m => m.TipoAnaliseId == id);
+            if (tipoAnaliseModel == null)
             {
                 return NotFound();
             }
 
-            return View(tipoAnalisesModel);
+            return View(tipoAnaliseModel);
         }
 
         // GET: TipoAnalises/Create
@@ -54,15 +54,15 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TipoId,TipoAnalises,Descricao,valor")] TipoAnalisesModel tipoAnalisesModel)
+        public async Task<IActionResult> Create([Bind("TipoAnaliseId,TipoAnalise,Descricao,Valor")] TipoAnaliseModel tipoAnaliseModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tipoAnalisesModel);
+                _context.Add(tipoAnaliseModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(tipoAnalisesModel);
+            return View(tipoAnaliseModel);
         }
 
         // GET: TipoAnalises/Edit/5
@@ -73,12 +73,12 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var tipoAnalisesModel = await _context.TipoAnalise.FindAsync(id);
-            if (tipoAnalisesModel == null)
+            var tipoAnaliseModel = await _context.TipoAnalise.FindAsync(id);
+            if (tipoAnaliseModel == null)
             {
                 return NotFound();
             }
-            return View(tipoAnalisesModel);
+            return View(tipoAnaliseModel);
         }
 
         // POST: TipoAnalises/Edit/5
@@ -86,9 +86,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TipoId,TipoAnalises,Descricao,valor")] TipoAnalisesModel tipoAnalisesModel)
+        public async Task<IActionResult> Edit(int id, [Bind("TipoAnaliseId,TipoAnalise,Descricao,Valor")] TipoAnaliseModel tipoAnaliseModel)
         {
-            if (id != tipoAnalisesModel.TipoId)
+            if (id != tipoAnaliseModel.TipoAnaliseId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(tipoAnalisesModel);
+                    _context.Update(tipoAnaliseModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipoAnalisesModelExists(tipoAnalisesModel.TipoId))
+                    if (!TipoAnaliseModelExists(tipoAnaliseModel.TipoAnaliseId))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tipoAnalisesModel);
+            return View(tipoAnaliseModel);
         }
 
         // GET: TipoAnalises/Delete/5
@@ -124,14 +124,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var tipoAnalisesModel = await _context.TipoAnalise
-                .FirstOrDefaultAsync(m => m.TipoId == id);
-            if (tipoAnalisesModel == null)
+            var tipoAnaliseModel = await _context.TipoAnalise
+                .FirstOrDefaultAsync(m => m.TipoAnaliseId == id);
+            if (tipoAnaliseModel == null)
             {
                 return NotFound();
             }
 
-            return View(tipoAnalisesModel);
+            return View(tipoAnaliseModel);
         }
 
         // POST: TipoAnalises/Delete/5
@@ -143,19 +143,19 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.TipoAnalise'  is null.");
             }
-            var tipoAnalisesModel = await _context.TipoAnalise.FindAsync(id);
-            if (tipoAnalisesModel != null)
+            var tipoAnaliseModel = await _context.TipoAnalise.FindAsync(id);
+            if (tipoAnaliseModel != null)
             {
-                _context.TipoAnalise.Remove(tipoAnalisesModel);
+                _context.TipoAnalise.Remove(tipoAnaliseModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TipoAnalisesModelExists(int id)
+        private bool TipoAnaliseModelExists(int id)
         {
-          return _context.TipoAnalise.Any(e => e.TipoId == id);
+          return _context.TipoAnalise.Any(e => e.TipoAnaliseId == id);
         }
     }
 }

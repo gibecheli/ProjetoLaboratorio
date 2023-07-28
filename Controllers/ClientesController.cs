@@ -33,14 +33,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var clientesModel = await _context.Clientes
+            var clienteModel = await _context.Clientes
                 .FirstOrDefaultAsync(m => m.CpfCnpj == id);
-            if (clientesModel == null)
+            if (clienteModel == null)
             {
                 return NotFound();
             }
 
-            return View(clientesModel);
+            return View(clienteModel);
         }
 
         // GET: Clientes/Create
@@ -54,15 +54,15 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoPessoa,CpfCnpj,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,RazaoSocial,NomePropriedade,DataDoCadastro")] ClientesModel clientesModel)
+        public async Task<IActionResult> Create([Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,NomePropriedade,DataCadastro")] ClienteModel clienteModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(clientesModel);
+                _context.Add(clienteModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(clientesModel);
+            return View(clienteModel);
         }
 
         // GET: Clientes/Edit/5
@@ -73,12 +73,12 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var clientesModel = await _context.Clientes.FindAsync(id);
-            if (clientesModel == null)
+            var clienteModel = await _context.Clientes.FindAsync(id);
+            if (clienteModel == null)
             {
                 return NotFound();
             }
-            return View(clientesModel);
+            return View(clienteModel);
         }
 
         // POST: Clientes/Edit/5
@@ -86,9 +86,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,TipoPessoa,CpfCnpj,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,RazaoSocial,NomePropriedade,DataDoCadastro")] ClientesModel clientesModel)
+        public async Task<IActionResult> Edit(string id, [Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,NomePropriedade,DataCadastro")] ClienteModel clienteModel)
         {
-            if (id != clientesModel.CpfCnpj)
+            if (id != clienteModel.CpfCnpj)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(clientesModel);
+                    _context.Update(clienteModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientesModelExists(clientesModel.CpfCnpj))
+                    if (!ClienteModelExists(clienteModel.CpfCnpj))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(clientesModel);
+            return View(clienteModel);
         }
 
         // GET: Clientes/Delete/5
@@ -124,14 +124,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var clientesModel = await _context.Clientes
+            var clienteModel = await _context.Clientes
                 .FirstOrDefaultAsync(m => m.CpfCnpj == id);
-            if (clientesModel == null)
+            if (clienteModel == null)
             {
                 return NotFound();
             }
 
-            return View(clientesModel);
+            return View(clienteModel);
         }
 
         // POST: Clientes/Delete/5
@@ -143,17 +143,17 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Clientes'  is null.");
             }
-            var clientesModel = await _context.Clientes.FindAsync(id);
-            if (clientesModel != null)
+            var clienteModel = await _context.Clientes.FindAsync(id);
+            if (clienteModel != null)
             {
-                _context.Clientes.Remove(clientesModel);
+                _context.Clientes.Remove(clienteModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientesModelExists(string id)
+        private bool ClienteModelExists(string id)
         {
           return _context.Clientes.Any(e => e.CpfCnpj == id);
         }

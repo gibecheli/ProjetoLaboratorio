@@ -33,14 +33,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var relatoriosModel = await _context.Relatorio
+            var relatorioModel = await _context.Relatorio
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (relatoriosModel == null)
+            if (relatorioModel == null)
             {
                 return NotFound();
             }
 
-            return View(relatoriosModel);
+            return View(relatorioModel);
         }
 
         // GET: Relatorios/Create
@@ -54,15 +54,15 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ResultadoId,TotalAnalisesPorPeriodo,ValorFinanceiroPorPeriodo,DataRelatorio")] RelatoriosModel relatoriosModel)
+        public async Task<IActionResult> Create([Bind("Id,TotalAnalisesPorPeriodo,ValorFinanceiroPorPeriodo,DataRelatorio")] RelatorioModel relatorioModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(relatoriosModel);
+                _context.Add(relatorioModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(relatoriosModel);
+            return View(relatorioModel);
         }
 
         // GET: Relatorios/Edit/5
@@ -73,12 +73,12 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var relatoriosModel = await _context.Relatorio.FindAsync(id);
-            if (relatoriosModel == null)
+            var relatorioModel = await _context.Relatorio.FindAsync(id);
+            if (relatorioModel == null)
             {
                 return NotFound();
             }
-            return View(relatoriosModel);
+            return View(relatorioModel);
         }
 
         // POST: Relatorios/Edit/5
@@ -86,9 +86,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ResultadoId,TotalAnalisesPorPeriodo,ValorFinanceiroPorPeriodo,DataRelatorio")] RelatoriosModel relatoriosModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TotalAnalisesPorPeriodo,ValorFinanceiroPorPeriodo,DataRelatorio")] RelatorioModel relatorioModel)
         {
-            if (id != relatoriosModel.Id)
+            if (id != relatorioModel.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(relatoriosModel);
+                    _context.Update(relatorioModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RelatoriosModelExists(relatoriosModel.Id))
+                    if (!RelatorioModelExists(relatorioModel.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(relatoriosModel);
+            return View(relatorioModel);
         }
 
         // GET: Relatorios/Delete/5
@@ -124,14 +124,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var relatoriosModel = await _context.Relatorio
+            var relatorioModel = await _context.Relatorio
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (relatoriosModel == null)
+            if (relatorioModel == null)
             {
                 return NotFound();
             }
 
-            return View(relatoriosModel);
+            return View(relatorioModel);
         }
 
         // POST: Relatorios/Delete/5
@@ -143,17 +143,17 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Relatorio'  is null.");
             }
-            var relatoriosModel = await _context.Relatorio.FindAsync(id);
-            if (relatoriosModel != null)
+            var relatorioModel = await _context.Relatorio.FindAsync(id);
+            if (relatorioModel != null)
             {
-                _context.Relatorio.Remove(relatoriosModel);
+                _context.Relatorio.Remove(relatorioModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RelatoriosModelExists(int id)
+        private bool RelatorioModelExists(int id)
         {
           return _context.Relatorio.Any(e => e.Id == id);
         }

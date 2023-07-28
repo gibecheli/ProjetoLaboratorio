@@ -157,6 +157,10 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
+      "Id": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\lib\\bootstrap\\dist\\css\\litera.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\litera.css"
+    },
+    {
       "Id": "C:\\ProjetoTCC\\ProjetoLaboratorio\\ProjetoLaboratorio\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },

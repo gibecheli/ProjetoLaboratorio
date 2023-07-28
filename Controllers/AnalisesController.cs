@@ -33,14 +33,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var analisesModel = await _context.Analises
+            var analiseModel = await _context.Analises
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (analisesModel == null)
+            if (analiseModel == null)
             {
                 return NotFound();
             }
 
-            return View(analisesModel);
+            return View(analiseModel);
         }
 
         // GET: Analises/Create
@@ -54,15 +54,15 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao")] AnalisesModel analisesModel)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao")] AnaliseModel analiseModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(analisesModel);
+                _context.Add(analiseModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(analisesModel);
+            return View(analiseModel);
         }
 
         // GET: Analises/Edit/5
@@ -73,12 +73,12 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var analisesModel = await _context.Analises.FindAsync(id);
-            if (analisesModel == null)
+            var analiseModel = await _context.Analises.FindAsync(id);
+            if (analiseModel == null)
             {
                 return NotFound();
             }
-            return View(analisesModel);
+            return View(analiseModel);
         }
 
         // POST: Analises/Edit/5
@@ -86,9 +86,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao")] AnalisesModel analisesModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao")] AnaliseModel analiseModel)
         {
-            if (id != analisesModel.Id)
+            if (id != analiseModel.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ProjetoLaboratorio.Controllers
             {
                 try
                 {
-                    _context.Update(analisesModel);
+                    _context.Update(analiseModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AnalisesModelExists(analisesModel.Id))
+                    if (!AnaliseModelExists(analiseModel.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(analisesModel);
+            return View(analiseModel);
         }
 
         // GET: Analises/Delete/5
@@ -124,14 +124,14 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
 
-            var analisesModel = await _context.Analises
+            var analiseModel = await _context.Analises
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (analisesModel == null)
+            if (analiseModel == null)
             {
                 return NotFound();
             }
 
-            return View(analisesModel);
+            return View(analiseModel);
         }
 
         // POST: Analises/Delete/5
@@ -143,17 +143,17 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Analises'  is null.");
             }
-            var analisesModel = await _context.Analises.FindAsync(id);
-            if (analisesModel != null)
+            var analiseModel = await _context.Analises.FindAsync(id);
+            if (analiseModel != null)
             {
-                _context.Analises.Remove(analisesModel);
+                _context.Analises.Remove(analiseModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AnalisesModelExists(int id)
+        private bool AnaliseModelExists(int id)
         {
           return _context.Analises.Any(e => e.Id == id);
         }

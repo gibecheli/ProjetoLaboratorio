@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoLaboratorio.Models.RelatoriosModel>
+﻿@model IEnumerable<ProjetoLaboratorio.Models.RelatorioModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,9 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ResultadoId)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.TotalAnalisesPorPeriodo)
             </th>
@@ -30,9 +27,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResultadoId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalAnalisesPorPeriodo)
             </td>

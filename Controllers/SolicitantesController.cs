@@ -10,22 +10,22 @@ using ProjetoLaboratorio.Models;
 
 namespace ProjetoLaboratorio.Controllers
 {
-    public class SolicitanteController : Controller
+    public class SolicitantesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public SolicitanteController(ApplicationDbContext context)
+        public SolicitantesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Solicitante
+        // GET: Solicitantes
         public async Task<IActionResult> Index()
         {
               return View(await _context.Solicitantes.ToListAsync());
         }
 
-        // GET: Solicitante/Details/5
+        // GET: Solicitantes/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.Solicitantes == null)
@@ -43,18 +43,18 @@ namespace ProjetoLaboratorio.Controllers
             return View(solicitanteModel);
         }
 
-        // GET: Solicitante/Create
+        // GET: Solicitantes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Solicitante/Create
+        // POST: Solicitantes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoPessoa,CpfCnpj,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,RazaoSocial,DataDeCadastro")] SolicitanteModel solicitanteModel)
+        public async Task<IActionResult> Create([Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,DataCadastro")] SolicitanteModel solicitanteModel)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace ProjetoLaboratorio.Controllers
             return View(solicitanteModel);
         }
 
-        // GET: Solicitante/Edit/5
+        // GET: Solicitantes/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.Solicitantes == null)
@@ -81,12 +81,12 @@ namespace ProjetoLaboratorio.Controllers
             return View(solicitanteModel);
         }
 
-        // POST: Solicitante/Edit/5
+        // POST: Solicitantes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,TipoPessoa,CpfCnpj,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,RazaoSocial,DataDeCadastro")] SolicitanteModel solicitanteModel)
+        public async Task<IActionResult> Edit(string id, [Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,DataCadastro")] SolicitanteModel solicitanteModel)
         {
             if (id != solicitanteModel.CpfCnpj)
             {
@@ -116,7 +116,7 @@ namespace ProjetoLaboratorio.Controllers
             return View(solicitanteModel);
         }
 
-        // GET: Solicitante/Delete/5
+        // GET: Solicitantes/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Solicitantes == null)
@@ -134,7 +134,7 @@ namespace ProjetoLaboratorio.Controllers
             return View(solicitanteModel);
         }
 
-        // POST: Solicitante/Delete/5
+        // POST: Solicitantes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
