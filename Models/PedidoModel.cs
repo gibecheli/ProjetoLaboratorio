@@ -16,6 +16,10 @@ namespace ProjetoLaboratorio.Models
         public string ClienteId { get; set; }
         public ClienteModel Cliente { get; set; }
 
+        [Required(ErrorMessage = "O campo SolicitanteId é obrigatório.")]
+        public string SolicitanteId { get; set; }
+        public SolicitanteModel Solicitante { get; set; }   
+
         [Required(ErrorMessage = "O campo AnaliseId é obrigatório.")]
         public int AnaliseId { get; set; }
         public AnaliseModel Analise { get; set; }

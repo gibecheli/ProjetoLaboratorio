@@ -12,8 +12,8 @@ using ProjetoLaboratorio.Data;
 namespace ProjetoLaboratorio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230728220250_initial1-migration")]
-    partial class initial1migration
+    [Migration("20230729191649_inclusaosolped")]
+    partial class inclusaosolped
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,6 +173,10 @@ namespace ProjetoLaboratorio.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
+                    b.Property<string>("SolicitanteId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(14)");
+
                     b.Property<int>("TipoAnaliseId")
                         .HasColumnType("int");
 
@@ -187,6 +191,8 @@ namespace ProjetoLaboratorio.Migrations
                     b.HasIndex("AnaliseId");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("SolicitanteId");
 
                     b.HasIndex("TipoAnaliseId");
 
@@ -212,7 +218,7 @@ namespace ProjetoLaboratorio.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Relatorio");
+                    b.ToTable("Relatorios");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.ResultadoModel", b =>
@@ -239,7 +245,7 @@ namespace ProjetoLaboratorio.Migrations
 
                     b.HasIndex("PedidoId");
 
-                    b.ToTable("Resultado");
+                    b.ToTable("Resultados");
                 });
 
             modelBuilder.Entity("ProjetoLaboratorio.Models.SolicitanteModel", b =>
@@ -312,7 +318,7 @@ namespace ProjetoLaboratorio.Migrations
 
                     b.HasKey("TipoAnaliseId");
 
-                    b.ToTable("TipoAnalise");
+                    b.ToTable("TipoAnalises");
                 });
 
             modelBuilder.Entity("AnaliseModelTipoAnaliseModel", b =>
@@ -361,6 +367,12 @@ namespace ProjetoLaboratorio.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjetoLaboratorio.Models.SolicitanteModel", "Solicitante")
+                        .WithMany()
+                        .HasForeignKey("SolicitanteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProjetoLaboratorio.Models.TipoAnaliseModel", "TipoAnalise")
                         .WithMany()
                         .HasForeignKey("TipoAnaliseId")
@@ -370,6 +382,8 @@ namespace ProjetoLaboratorio.Migrations
                     b.Navigation("Analise");
 
                     b.Navigation("Cliente");
+
+                    b.Navigation("Solicitante");
 
                     b.Navigation("TipoAnalise");
                 });

@@ -171,6 +171,10 @@ namespace ProjetoLaboratorio.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
+                    b.Property<string>("SolicitanteId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(14)");
+
                     b.Property<int>("TipoAnaliseId")
                         .HasColumnType("int");
 
@@ -185,6 +189,8 @@ namespace ProjetoLaboratorio.Migrations
                     b.HasIndex("AnaliseId");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("SolicitanteId");
 
                     b.HasIndex("TipoAnaliseId");
 
@@ -359,6 +365,12 @@ namespace ProjetoLaboratorio.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjetoLaboratorio.Models.SolicitanteModel", "Solicitante")
+                        .WithMany()
+                        .HasForeignKey("SolicitanteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProjetoLaboratorio.Models.TipoAnaliseModel", "TipoAnalise")
                         .WithMany()
                         .HasForeignKey("TipoAnaliseId")
@@ -368,6 +380,8 @@ namespace ProjetoLaboratorio.Migrations
                     b.Navigation("Analise");
 
                     b.Navigation("Cliente");
+
+                    b.Navigation("Solicitante");
 
                     b.Navigation("TipoAnalise");
                 });

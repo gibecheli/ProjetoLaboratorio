@@ -12,8 +12,8 @@ using ProjetoLaboratorio.Data;
 namespace ProjetoLaboratorio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230728223920_correcoes3")]
-    partial class correcoes3
+    [Migration("20230729183839_CriandoMigration")]
+    partial class CriandoMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
