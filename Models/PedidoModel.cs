@@ -13,11 +13,11 @@ namespace ProjetoLaboratorio.Models
         public int PedidoId { get; set; }
 
         [Required(ErrorMessage = "O campo ClienteId é obrigatório.")]
-        public string ClienteId { get; set; }
+        public string CpfCnpjC { get; set; }
         public ClienteModel Cliente { get; set; }
 
         [Required(ErrorMessage = "O campo SolicitanteId é obrigatório.")]
-        public string SolicitanteId { get; set; }
+        public string CpfCnpjS { get; set; }
         public SolicitanteModel Solicitante { get; set; }   
 
         [Required(ErrorMessage = "O campo AnaliseId é obrigatório.")]
@@ -34,6 +34,8 @@ namespace ProjetoLaboratorio.Models
         [Required(ErrorMessage = "O campo Valor é obrigatório.")]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Valor { get; set; }
+
+
          
 
         // Atributos adicionais

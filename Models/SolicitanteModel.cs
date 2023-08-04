@@ -8,10 +8,13 @@ namespace ProjetoLaboratorio.Models
     public class SolicitanteModel
     {
         [Key]
-        [Required(ErrorMessage = "O campo CpfCnpj é obrigatório.")]
+        [Required(ErrorMessage = "O campo CPF/CNPJ é obrigatório.")]
         [Display(Name = "CPF/CNPJ")]
-        [StringLength(14, ErrorMessage = "O campo CpfCnpj deve ter {1} caracteres.", MinimumLength = 11)]
-        public string CpfCnpj { get; set; }
+        [StringLength(18, ErrorMessage = "O campo CPF/CNPJ deve ter {1} caracteres.", MinimumLength = 14)]
+        [RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$",
+        ErrorMessage = "CPF/CNPJ inválido. Use o formato '999.999.999-99' para CPF ou '99.999.999/9999-99' para CNPJ.")]
+        public string CpfCnpjS { get; set; }
+
 
         [Required(ErrorMessage = "O campo Tipo Pessoa é obrigatório.")]
         [Display(Name = "Tipo Pessoa")]
@@ -34,8 +37,7 @@ namespace ProjetoLaboratorio.Models
 
         [Required(ErrorMessage = "O campo Estado é obrigatório.")]
         [Display(Name = "Estado")]
-        [StringLength(2, ErrorMessage = "O campo Estado deve ter {1} caracteres.", MinimumLength = 2)]
-        public string Estado { get; set; }
+        public EstadoEnum Estado { get; set; }
 
         [Display(Name = "Telefone")]
         [StringLength(14, ErrorMessage = "O campo Telefone deve ter no máximo {1} caracteres.")]

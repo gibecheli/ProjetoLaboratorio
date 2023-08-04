@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-dark table-hover">
     <thead>
         <tr>
             <th>
@@ -37,10 +37,13 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InscricaoEstadual)
+                @Html.DisplayNameFor(model => model.InscEstRG)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NomePropriedade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Convenio)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataCadastro)
@@ -76,18 +79,21 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InscricaoEstadual)
+                @Html.DisplayFor(modelItem => item.InscEstRG)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NomePropriedade)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Convenio.Nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.DataCadastro)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CpfCnpj">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CpfCnpj">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CpfCnpj">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.CpfCnpjC">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CpfCnpjC">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CpfCnpjC">Delete</a>
             </td>
         </tr>
 }

@@ -34,7 +34,7 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var solicitanteModel = await _context.Solicitantes
-                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
+                .FirstOrDefaultAsync(m => m.CpfCnpjS == id);
             if (solicitanteModel == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace ProjetoLaboratorio.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,DataCadastro")] SolicitanteModel solicitanteModel)
         {
-            if (id != solicitanteModel.CpfCnpj)
+            if (id != solicitanteModel.CpfCnpjS)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SolicitanteModelExists(solicitanteModel.CpfCnpj))
+                    if (!SolicitanteModelExists(solicitanteModel.CpfCnpjS))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var solicitanteModel = await _context.Solicitantes
-                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
+                .FirstOrDefaultAsync(m => m.CpfCnpjS == id);
             if (solicitanteModel == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace ProjetoLaboratorio.Controllers
 
         private bool SolicitanteModelExists(string id)
         {
-          return _context.Solicitantes.Any(e => e.CpfCnpj == id);
+          return _context.Solicitantes.Any(e => e.CpfCnpjS == id);
         }
     }
 }

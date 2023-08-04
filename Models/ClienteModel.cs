@@ -10,9 +10,12 @@ namespace ProjetoLaboratorio.Models
         [Key]
         [Required(ErrorMessage = "O campo CPF/CNPJ é obrigatório.")]
         [Display(Name = "CPF/CNPJ")]
-        [StringLength(14, ErrorMessage = "O campo CPF/CNPJ deve ter {1} caracteres.", MinimumLength = 11)]
-        public string CpfCnpj { get; set; }
+        [StringLength(18, ErrorMessage = "O campo CPF/CNPJ deve ter {1} caracteres.", MinimumLength = 14)]
+        [RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$",
+        ErrorMessage = "CPF/CNPJ inválido. Use o formato '999.999.999-99' para CPF ou '99.999.999/9999-99' para CNPJ.")]
+        public string CpfCnpjC { get; set; }
 
+        
         [Required(ErrorMessage = "O campo Tipo Pessoa é obrigatório.")]
         [Display(Name = "Tipo Pessoa")]
         public TipoPessoaEnum TipoPessoa { get; set; }
@@ -31,7 +34,7 @@ namespace ProjetoLaboratorio.Models
 
         [Required(ErrorMessage = "O campo Estado é obrigatório.")]
         [Display(Name = "Estado")]
-        public string Estado { get; set; }
+        public EstadoEnum Estado { get; set; }
 
         [Display(Name = "Telefone")]
         [StringLength(14, ErrorMessage = "O campo Telefone deve ter no máximo {1} caracteres.")]
@@ -45,17 +48,23 @@ namespace ProjetoLaboratorio.Models
         [EmailAddress(ErrorMessage = "O campo Email deve ser um endereço de email válido.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "O campo Inscrição Estadual é obrigatório.")]
-        [Display(Name = "Inscrição Estadual")]
-        public string InscricaoEstadual { get; set; }
+        [Display(Name = "Inscrição Estadual ou RG")]
+        public string? InscEstRG { get; set; }
 
         [Required(ErrorMessage = "O campo Nome Propriedade é obrigatório.")]
         [Display(Name = "Nome Propriedade")]
         public string NomePropriedade { get; set; }
 
+        [Required(ErrorMessage = "Informe se o cliente tem algum convênio.")]
+        [Display(Name = "Convênio")]
+        public int? ConvenioId { get; set; }
+        public ConvenioModel Convenio { get; set; }
+
         [Display(Name = "Data do Cadastro")]
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; } = DateTime.Now;
+
+        public ICollection<ConvenioModel> Convenios { get; set; }
     }
 
     public enum TipoPessoaEnum
@@ -66,4 +75,37 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Pessoa Jurídica")]
         PessoaJuridica
     }
+
+    public enum EstadoEnum
+    {
+        AC,
+        AL,
+        AP,
+        AM,
+        BA,
+        CE,
+        DF,
+        ES,
+        GO,
+        MA,
+        MT,
+        MS,
+        MG,
+        PA,
+        PB,
+        PR,
+        PE,
+        PI,
+        RJ,
+        RN,
+        RS,
+        RO,
+        RR,
+        SC,
+        SP,
+        SE,
+        TO
+    }
+
+ 
 }

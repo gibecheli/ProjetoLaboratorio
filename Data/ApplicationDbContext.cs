@@ -10,6 +10,7 @@ namespace ProjetoLaboratorio.Data
         }
 
         public DbSet<ClienteModel> Clientes { get; set; }
+        public DbSet<ConvenioModel> Convenios { get; set; }
         public DbSet<SolicitanteModel> Solicitantes { get; set; }
         public DbSet<AnaliseModel> Analises { get; set; }
         public DbSet<PedidoModel> Pedidos { get; set; }
@@ -18,5 +19,6 @@ namespace ProjetoLaboratorio.Data
         public DbSet<RelatorioModel> Relatorio { get; set; }
         public DbSet<ResultadoModel> Resultado { get; set; }
         public object Users { get; internal set; }
+        
     }
 }

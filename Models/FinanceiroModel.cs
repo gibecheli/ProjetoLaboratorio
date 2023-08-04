@@ -23,7 +23,7 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "ID")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "O campo PedidosId é obrigatório.")]
+        [Required(ErrorMessage = "O campo Pedido é obrigatório.")]
         [Display(Name = "Pedido")]
         public int PedidosId { get; set; }
 

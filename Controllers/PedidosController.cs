@@ -70,7 +70,7 @@ namespace ProjetoLaboratorio.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.CpfCnpjC);
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
             return View(pedidoModel);
         }
@@ -89,7 +89,7 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.CpfCnpjC);
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
             return View(pedidoModel);
         }
@@ -127,7 +127,7 @@ namespace ProjetoLaboratorio.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.CpfCnpjC);
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
             return View(pedidoModel);
         }

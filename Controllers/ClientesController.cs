@@ -22,7 +22,8 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Clientes.ToListAsync());
+            var applicationDbContext = _context.Clientes.Include(c => c.Convenio);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Clientes/Details/5
@@ -34,7 +35,8 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var clienteModel = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
+                .Include(c => c.Convenio)
+                .FirstOrDefaultAsync(m => m.CpfCnpjC == id);
             if (clienteModel == null)
             {
                 return NotFound();
@@ -46,6 +48,7 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+            ViewData["ConvenioId"] = new SelectList(_context.Convenios, "Id", "Nome");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,NomePropriedade,DataCadastro")] ClienteModel clienteModel)
+        public async Task<IActionResult> Create([Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscEstRG,NomePropriedade,ConvenioId,DataCadastro")] ClienteModel clienteModel)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace ProjetoLaboratorio.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ConvenioId"] = new SelectList(_context.Convenios, "Id", "Nome", clienteModel.ConvenioId);
             return View(clienteModel);
         }
 
@@ -78,6 +82,7 @@ namespace ProjetoLaboratorio.Controllers
             {
                 return NotFound();
             }
+            ViewData["ConvenioId"] = new SelectList(_context.Convenios, "Id", "Nome", clienteModel.ConvenioId);
             return View(clienteModel);
         }
 
@@ -86,9 +91,9 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscricaoEstadual,NomePropriedade,DataCadastro")] ClienteModel clienteModel)
+        public async Task<IActionResult> Edit(string id, [Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscEstRG,NomePropriedade,ConvenioId,DataCadastro")] ClienteModel clienteModel)
         {
-            if (id != clienteModel.CpfCnpj)
+            if (id != clienteModel.CpfCnpjC)
             {
                 return NotFound();
             }
@@ -102,7 +107,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteModelExists(clienteModel.CpfCnpj))
+                    if (!ClienteModelExists(clienteModel.CpfCnpjC))
                     {
                         return NotFound();
                     }
@@ -113,6 +118,7 @@ namespace ProjetoLaboratorio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ConvenioId"] = new SelectList(_context.Convenios, "Id", "Nome", clienteModel.ConvenioId);
             return View(clienteModel);
         }
 
@@ -125,7 +131,8 @@ namespace ProjetoLaboratorio.Controllers
             }
 
             var clienteModel = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.CpfCnpj == id);
+                .Include(c => c.Convenio)
+                .FirstOrDefaultAsync(m => m.CpfCnpjC == id);
             if (clienteModel == null)
             {
                 return NotFound();
@@ -155,7 +162,7 @@ namespace ProjetoLaboratorio.Controllers
 
         private bool ClienteModelExists(string id)
         {
-          return _context.Clientes.Any(e => e.CpfCnpj == id);
+          return _context.Clientes.Any(e => e.CpfCnpjC == id);
         }
     }
 }
