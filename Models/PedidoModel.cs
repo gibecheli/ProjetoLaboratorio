@@ -34,14 +34,12 @@ namespace ProjetoLaboratorio.Models
         [Required(ErrorMessage = "O campo Valor é obrigatório.")]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Valor { get; set; }
-
-
-         
-
+              
         // Atributos adicionais
         [Display(Name = "Total:")]
         [Column(TypeName = "decimal(10, 2)")]
-        public decimal Total { get; set; }
+        public decimal Total => Quantidade * Valor;
+         
 
         [MaxLength(100, ErrorMessage = "O campo Observacao deve ter no máximo 100 caracteres.")]
         public string Observacao { get; set; }

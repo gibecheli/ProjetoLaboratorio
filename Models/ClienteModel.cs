@@ -11,8 +11,6 @@ namespace ProjetoLaboratorio.Models
         [Required(ErrorMessage = "O campo CPF/CNPJ é obrigatório.")]
         [Display(Name = "CPF/CNPJ")]
         [StringLength(18, ErrorMessage = "O campo CPF/CNPJ deve ter {1} caracteres.", MinimumLength = 14)]
-        [RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$",
-        ErrorMessage = "CPF/CNPJ inválido. Use o formato '999.999.999-99' para CPF ou '99.999.999/9999-99' para CNPJ.")]
         public string CpfCnpjC { get; set; }
 
         

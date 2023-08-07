@@ -57,7 +57,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscEstRG,NomePropriedade,ConvenioId,DataCadastro")] ClienteModel clienteModel)
+        public async Task<IActionResult> Create([Bind("CpfCnpjC,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscEstRG,NomePropriedade,ConvenioId,DataCadastro")] ClienteModel clienteModel)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("CpfCnpj,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscEstRG,NomePropriedade,ConvenioId,DataCadastro")] ClienteModel clienteModel)
+        public async Task<IActionResult> Edit(string id, [Bind("CpfCnpjC,TipoPessoa,Nome,Endereco,Cidade,Estado,Telefone,Celular,Email,InscEstRG,NomePropriedade,ConvenioId,DataCadastro")] ClienteModel clienteModel)
         {
             if (id != clienteModel.CpfCnpjC)
             {

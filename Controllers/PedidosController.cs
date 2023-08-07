@@ -22,7 +22,7 @@ namespace ProjetoLaboratorio.Controllers
         // GET: Pedidos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pedidos.Include(p => p.Analise).Include(p => p.Cliente).Include(p => p.TipoAnalise);
+            var applicationDbContext = _context.Pedidos.Include(p => p.Analise).Include(p => p.TipoAnalise);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,7 +36,6 @@ namespace ProjetoLaboratorio.Controllers
 
             var pedidoModel = await _context.Pedidos
                 .Include(p => p.Analise)
-                .Include(p => p.Cliente)
                 .Include(p => p.TipoAnalise)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedidoModel == null)
@@ -51,7 +50,6 @@ namespace ProjetoLaboratorio.Controllers
         public IActionResult Create()
         {
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao");
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj");
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao");
             return View();
         }
@@ -61,7 +59,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PedidoId,ClienteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,Total,Observacao,DataEntrada,DataSaida")] PedidoModel pedidoModel)
+        public async Task<IActionResult> Create([Bind("PedidoId,CpfCnpjC,CpfCnpjS,AnaliseId,TipoAnaliseId,Quantidade,Valor,Observacao,DataEntrada,DataSaida")] PedidoModel pedidoModel)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +68,6 @@ namespace ProjetoLaboratorio.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.CpfCnpjC);
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
             return View(pedidoModel);
         }
@@ -89,7 +86,6 @@ namespace ProjetoLaboratorio.Controllers
                 return NotFound();
             }
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.CpfCnpjC);
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
             return View(pedidoModel);
         }
@@ -99,7 +95,7 @@ namespace ProjetoLaboratorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,ClienteId,AnaliseId,TipoAnaliseId,Quantidade,Valor,Total,Observacao,DataEntrada,DataSaida")] PedidoModel pedidoModel)
+        public async Task<IActionResult> Edit(int id, [Bind("PedidoId,CpfCnpjC,CpfCnpjS,AnaliseId,TipoAnaliseId,Quantidade,Valor,Observacao,DataEntrada,DataSaida")] PedidoModel pedidoModel)
         {
             if (id != pedidoModel.PedidoId)
             {
@@ -127,7 +123,6 @@ namespace ProjetoLaboratorio.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AnaliseId"] = new SelectList(_context.Analises, "Id", "Descricao", pedidoModel.AnaliseId);
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "CpfCnpj", "CpfCnpj", pedidoModel.CpfCnpjC);
             ViewData["TipoAnaliseId"] = new SelectList(_context.TipoAnalise, "TipoAnaliseId", "Descricao", pedidoModel.TipoAnaliseId);
             return View(pedidoModel);
         }
@@ -142,7 +137,6 @@ namespace ProjetoLaboratorio.Controllers
 
             var pedidoModel = await _context.Pedidos
                 .Include(p => p.Analise)
-                .Include(p => p.Cliente)
                 .Include(p => p.TipoAnalise)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedidoModel == null)

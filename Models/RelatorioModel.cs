@@ -17,7 +17,7 @@ namespace ProjetoLaboratorio.Models
         [Display(Name = "Total de Análises por Período:")]
         public int TotalAnalisesPorPeriodo { get; set; }
 
-        [Display(Name = "Valor do Financeiro por Período:")]
+        [Display(Name = "Valor do Financeiro pori Período:")]
         [DisplayFormat(DataFormatString = "{0:C2}")]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal ValorFinanceiroPorPeriodo { get; set; }
