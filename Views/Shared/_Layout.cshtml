@@ -10,44 +10,51 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+        @*<nav class="navbar navbar-expand-lg navbar-dark bg-success">*@
+            <nav class="navbar navbar-expand-lg bg-success justify-content-start" data-bs-theme="dark">
+            <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProjetoLaboratorio</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Analises" asp-action="Index">Análises</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="cadastrosDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cadastros
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="cadastrosDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Solicitantes" asp-action="Index">Solicitantes</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Analises" asp-action="Index">Análises</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="TipoAnalises" asp-action="Index">Tipo de Análise</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Convenios" asp-action="Index">Convênios</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TipoAnalises" asp-action="Index">Tipo de Análise</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="cadastrosDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Pedido de Análise
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="cadastrosDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Resultados" asp-action="Index">Resultados</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Convenios" asp-action="Index">Convênios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Solicitantes" asp-action="Index">Solicitantes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Resultados" asp-action="Index">Resultados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Relatorios" asp-action="Index">Relatórios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Financeiro" asp-action="Index">Financeiro</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="cadastrosDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Financeiro
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="cadastrosDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Financeiro" asp-action="Index">Financeiro</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Relatorios" asp-action="Index">Relatórios</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -60,14 +67,15 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - ProjetoLaboratorio - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer bg-success text-light">
+        <div class="container-fluid py-1">
+            &copy; 2023 - Laboratório Solos e Plantas - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+         @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

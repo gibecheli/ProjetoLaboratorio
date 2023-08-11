@@ -67,10 +67,10 @@ namespace ProjetoLaboratorio.Models
 
     public enum TipoPessoaEnum
     {
-        [Display(Name = "Pessoa Física")]
+        [Display(Name = "Física")]
         PessoaFisica,
 
-        [Display(Name = "Pessoa Jurídica")]
+        [Display(Name = "Jurídica")]
         PessoaJuridica
     }
 

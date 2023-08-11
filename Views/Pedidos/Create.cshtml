@@ -24,11 +24,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnaliseId" class="control-label"></label>
-                <select asp-for="AnaliseId" class ="form-control" asp-items="ViewBag.AnaliseId"></select>
+                <select asp-for="AnaliseId" class="form-control" asp-items="ViewBag.AnaliseId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="TipoAnaliseId" class="control-label"></label>
-                <select asp-for="TipoAnaliseId" class ="form-control" asp-items="ViewBag.TipoAnaliseId"></select>
+                <select asp-for="TipoAnaliseId" class="form-control" asp-items="ViewBag.TipoAnaliseId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
@@ -37,8 +37,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" class="form-control" />
+                <input asp-for="Valor" class="form-control" id="valor" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="total">Total:</label>
+                <span id="total" class="form-control"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Observacao" class="control-label"></label>
@@ -67,5 +71,29 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        const quantidadeInput = document.getElementById('Quantidade');
+        const valorInput = document.getElementById('valor');
+        const totalSpan = document.getElementById('total');
+
+        quantidadeInput.addEventListener('input', calcularTotal);
+        valorInput.addEventListener('input', calcularTotal);
+
+        function calcularTotal() {
+            const quantidade = parseFloat(quantidadeInput.value);
+            const valor = parseFloat(valorInput.value);
+
+            if (!isNaN(quantidade) && !isNaN(valor)) {
+                const total = quantidade * valor;
+                totalSpan.textContent = total.toFixed(2);
+            } else {
+                totalSpan.textContent = '';
+            }
+        }
+
+        calcularTotal();
+    </script>
 }

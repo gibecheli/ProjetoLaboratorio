@@ -38,9 +38,8 @@ namespace ProjetoLaboratorio.Models
         // Atributos adicionais
         [Display(Name = "Total:")]
         [Column(TypeName = "decimal(10, 2)")]
-        public decimal Total => Quantidade * Valor;
+        public decimal Total;
          
-
         [MaxLength(100, ErrorMessage = "O campo Observacao deve ter no máximo 100 caracteres.")]
         public string Observacao { get; set; }
 
