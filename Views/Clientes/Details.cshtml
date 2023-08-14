@@ -9,88 +9,126 @@
 <div>
     <h4>Dados do Cliente</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CpfCnpjC)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CpfCnpjC)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoPessoa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoPessoa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Endereco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Celular)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Celular)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InscEstRG)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InscEstRG)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomePropriedade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomePropriedade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Convenio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Convenio.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataCadastro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataCadastro)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered table-light">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CpfCnpjC)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.CpfCnpjC)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TipoPessoa)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.TipoPessoa)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Nome)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Endereco)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Endereco)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cidade)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Cidade)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Estado)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telefone)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Telefone)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Celular)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Celular)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InscEstRG)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.InscEstRG)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomePropriedade)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.NomePropriedade)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Convenio)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Convenio.Nome)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataCadastro)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.DataCadastro)
+                    </td>
+                </tr>
+            </table>
+        </div>
+         <div class="col-md-6">
+            <table class="table table-bordered table-light">
+              </table>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.CpfCnpjC">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="text-left">
+    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@Model?.CpfCnpjC">Editar</a>
+    <a class="btn btn-primary btn-sm" asp-action="Index">Voltar</a>
 </div>

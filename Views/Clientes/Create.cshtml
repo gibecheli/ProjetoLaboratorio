@@ -9,6 +9,7 @@
 <h4>Novo Cliente</h4>
 <hr />
 <div class="row">
+    <div class="table-responsive">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -70,7 +71,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ConvenioId" class="control-label"></label>
-                <select asp-for="ConvenioId" class ="form-control" asp-items="ViewBag.ConvenioId"></select>
+                <select asp-for="ConvenioId" class="form-control" asp-items="ViewBag.ConvenioId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DataCadastro" class="control-label"></label>
@@ -85,9 +86,10 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

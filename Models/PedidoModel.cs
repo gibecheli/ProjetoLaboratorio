@@ -13,18 +13,22 @@ namespace ProjetoLaboratorio.Models
         public int PedidoId { get; set; }
 
         [Required(ErrorMessage = "O campo ClienteId é obrigatório.")]
+        [Display(Name = "Cliente")]
         public string CpfCnpjC { get; set; }
         public ClienteModel Cliente { get; set; }
 
         [Required(ErrorMessage = "O campo SolicitanteId é obrigatório.")]
+        [Display(Name = "Solicitante")]
         public string CpfCnpjS { get; set; }
         public SolicitanteModel Solicitante { get; set; }   
 
         [Required(ErrorMessage = "O campo AnaliseId é obrigatório.")]
+        [Display(Name = "Análise")]
         public int AnaliseId { get; set; }
         public AnaliseModel Analise { get; set; }
 
         [Required(ErrorMessage = "O campo TipoAnaliseId é obrigatório.")]
+        [Display(Name = "Tipo de Análise:")]
         public int TipoAnaliseId { get; set; }
         public TipoAnaliseModel TipoAnalise { get; set; }
 
@@ -36,11 +40,12 @@ namespace ProjetoLaboratorio.Models
         public decimal Valor { get; set; }
               
         // Atributos adicionais
-        [Display(Name = "Total:")]
+        [Display(Name = "Total")]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Total;
          
         [MaxLength(100, ErrorMessage = "O campo Observacao deve ter no máximo 100 caracteres.")]
+        [Display(Name = "Observação")]
         public string Observacao { get; set; }
 
         [Required(ErrorMessage = "O campo Data de Entrada é obrigatório.")]

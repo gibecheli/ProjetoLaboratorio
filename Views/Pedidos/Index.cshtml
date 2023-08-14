@@ -4,14 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div class="col-auto">
+            <h2>Pedido de Análises</h2>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-success" asp-action="Create">Cadastrar Novo Pedido</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
         <tr>
+
             <th>
                 @Html.DisplayNameFor(model => model.CpfCnpjC)
             </th>
@@ -29,6 +37,10 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            
+            <th>
+                    @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Observacao)
@@ -52,10 +64,10 @@
                 @Html.DisplayFor(modelItem => item.CpfCnpjS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Analise.Descricao)
+                @Html.DisplayFor(modelItem => item.Analise.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoAnalise.Descricao)
+                @Html.DisplayFor(modelItem => item.TipoAnalise.TipoAnalise)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
@@ -63,19 +75,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Observacao)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataEntrada)
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.DataSaida)
-            </td>
+            </td>*@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PedidoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PedidoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PedidoId">Delete</a>
+                    <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.PedidoId">Editar</a> |
+                    <a class="btn btn-warning btn-sm" asp-action="Details" asp-route-id="@item.PedidoId">Detalhar</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.PedidoId">Excluir</a>
             </td>
         </tr>
 }

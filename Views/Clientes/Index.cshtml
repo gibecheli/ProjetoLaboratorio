@@ -7,7 +7,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div class="col-auto">
-            <h1>Clientes</h1>
+            <h2>Clientes</h2>
         </div>
         <div class="col-auto">
             <a class="btn btn-success" asp-action="Create">Cadastrar Novo Cliente</a>
@@ -51,12 +51,11 @@
                     <td>@Html.DisplayFor(modelItem => item.Convenio.Nome)</td>
                     @*<td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>*@
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.CpfCnpjC">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.CpfCnpjC">Detalhes</a> |
-                        <a asp-action="Delete" asp-route-id="@item.CpfCnpjC">Excluir</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.CpfCnpjC">Editar</a> |
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.CpfCnpjC">Detalhes</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.CpfCnpjC">Excluir</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-</div>

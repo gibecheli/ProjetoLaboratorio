@@ -13,7 +13,8 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CpfCnpjC" class="control-label"></label>
+                <label asp-for="CpfCnpjC" class="control-label">CPF/CNPJ:</label>
+               @* <label asp-for="CpfCnpjC" class="control-label"></label>*@
                 <input asp-for="CpfCnpjC" class="form-control" />
                 <span asp-validation-for="CpfCnpjC" class="text-danger"></span>
             </div>

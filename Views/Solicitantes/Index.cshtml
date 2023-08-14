@@ -4,13 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container p-2 rounded-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div class="col-auto">
+            <h2>Solicitantes</h2>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-success" asp-action="Create">Cadastrar Novo Solicitante</a>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.TipoPessoa)
@@ -73,9 +79,9 @@
                 @Html.DisplayFor(modelItem => item.DataCadastro)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CpfCnpjS">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CpfCnpjS">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CpfCnpjS">Delete</a>
+                <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.CpfCnpjS">Edit</a> |
+                <a class="btn btn-warning btn-sm" asp-action="Details" asp-route-id="@item.CpfCnpjS">Details</a> |
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.CpfCnpjS">Delete</a>
             </td>
         </tr>
 }
